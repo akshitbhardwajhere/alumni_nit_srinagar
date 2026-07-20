@@ -1,0 +1,16 @@
+{
+  "name": "alumni_nit_srinagar",
+  "version": "1.0.0",
+  "description": "The Official Alumni Website of NIT Srinagar connects alumni with the institute and one another, fostering lifelong relationships through networking, events, mentorship, and opportunities to give back to the NIT Srinagar community.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "(cd frontend && yarn install)",
+    "build": "(cd frontend && yarn build)",
+    "dev": "(cd frontend && yarn dev)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

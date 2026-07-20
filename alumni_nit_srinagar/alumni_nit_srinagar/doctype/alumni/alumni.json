@@ -46,6 +46,7 @@
    "fieldname": "batchyear",
    "fieldtype": "Data",
    "label": "Batch/Year",
+   "placeholder": "2023-2027",
    "reqd": 1
   },
   {
@@ -72,7 +73,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-20 22:48:34.944921",
+ "modified": "2026-07-20 22:49:57.515095",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",
@@ -96,5 +97,8 @@
  "rows_threshold_for_grid_search": 20,
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }
