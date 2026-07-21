@@ -26,6 +26,7 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Full Name",
    "reqd": 1
   },
@@ -45,6 +46,7 @@
   {
    "fieldname": "batchyear",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Batch/Year",
    "placeholder": "2023-2027",
    "reqd": 1
@@ -57,6 +59,7 @@
   {
    "fieldname": "email_address",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email Address",
    "reqd": 1
   },
@@ -67,13 +70,14 @@
   {
    "fieldname": "phone_number",
    "fieldtype": "Phone",
+   "in_list_view": 1,
    "label": "Phone Number (Optional)"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-20 22:49:57.515095",
+ "modified": "2026-07-21 00:03:36.215744",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",
