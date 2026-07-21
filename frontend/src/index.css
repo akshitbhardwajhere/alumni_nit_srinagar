@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Frappe UI Select Component Dropdown Overrides for Scrollability */
+[data-slot="content-body"] {
+	/* max-height: 350px !important; */
+	display: flex !important;
+	flex-direction: column !important;
+  overflow-y: auto;
+}
+
+/* [data-slot="content-body"] > div {
+	overflow-y: auto !important;
+	max-height: 232px !important;
+	scrollbar-width: thin;
+} */

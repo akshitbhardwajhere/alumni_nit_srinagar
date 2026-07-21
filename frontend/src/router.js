@@ -5,18 +5,31 @@ import { session } from "./data/session"
 const routes = [
 	{
 		path: "/",
-		name: "Home",
-		component: () => import("@/pages/Home.vue"),
+		name: "HomePage",
+		redirect: {
+			name: "LandingPage",
+		},
 	},
 	{
-		name: "Login",
-		path: "/account/login",
-		component: () => import("@/pages/Login.vue"),
+		path: "/home",
+		name: "LandingPage",
+		component: () => import("@/pages/LandingPage.vue"),
+		meta: {
+			requiresLogin: false,
+		},
+	},
+	{
+		path: "/register-alumni",
+		name: "RegisterAlumni",
+		component: () => import("@/pages/RegisterAlumni.vue"),
+		meta: {
+			requiresLogin: false,
+		},
 	},
 ]
 
 const router = createRouter({
-	history: createWebHistory("/frontend"),
+	history: createWebHistory("/"),
 	routes,
 })
 
@@ -28,13 +41,11 @@ router.beforeEach(async (to, from, next) => {
 		isLoggedIn = false
 	}
 
-	if (to.name === "Login" && isLoggedIn) {
-		next({ name: "Home" })
-	} else if (to.name !== "Login" && !isLoggedIn) {
-		next({ name: "Login" })
-	} else {
-		next()
+	if (to.meta.requiresLogin && !isLoggedIn) {
+		// If the route requires login and the user is not logged in, redirect to the Login page
+		window.location.href = "/login?redirect-to=/home"
 	}
+	next()
 })
 
 export default router
