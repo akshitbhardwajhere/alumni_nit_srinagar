@@ -12,6 +12,7 @@
   "branchdepartment",
   "column_break_afzr",
   "batchyear",
+  "image",
   "contact_info_section",
   "email_address",
   "column_break_djpf",
@@ -72,12 +73,17 @@
    "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Phone Number (Optional)"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-21 00:03:36.215744",
+ "modified": "2026-07-21 12:11:34.335031",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",
@@ -94,6 +100,18 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "All",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Guest",
    "write": 1
   }
  ],

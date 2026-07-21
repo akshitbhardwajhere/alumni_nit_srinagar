@@ -18,6 +18,7 @@ class Alumni(Document):
 		branchdepartment: DF.Literal["Computer Science & Engineering (CSE)", "Information Technology (IT)", "Electrical Engineering", "Electronics & Communication Engineering (ECE)", "Mechanical Engineering", "Civil Engineering", "Chemical Engineering", "Metallurgical & Materials Engineering", "Mathematics", "Physics", "Chemistry", "Humanities, Social Sciences & Management (HSS&M)"]
 		email_address: DF.Data
 		full_name: DF.Data
+		image: DF.AttachImage | None
 		phone_number: DF.Phone | None
 	# end: auto-generated types
 
