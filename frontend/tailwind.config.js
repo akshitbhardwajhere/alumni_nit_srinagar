@@ -9,7 +9,12 @@ export default {
 		"../node_modules/frappe-ui/src/components/**/*.{vue,js,ts,jsx,tsx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				"exo-2": ['"Exo 2"', "sans-serif"],
+				geomini: ['"Geomini"', "sans-serif"],
+			},
+		},
 	},
 	plugins: [],
-};
+}
