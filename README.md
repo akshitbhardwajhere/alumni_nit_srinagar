@@ -1,40 +1,56 @@
-### Alumni NIT Srinagar
+# Alumni NIT Srinagar — SANGAM
 
-The Official Alumni Website of NIT Srinagar connects alumni with the institute and one another, fostering lifelong relationships through networking, events, mentorship, and opportunities to give back to the NIT Srinagar community.
+The Official Alumni Web Application of **National Institute of Technology Srinagar (NIT Srinagar)**, maintained by the **Office of Dean Alumni & International Affairs**.
 
-### Installation
+---
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+## 🌟 Features
+
+- **Alumni Directory**: Comprehensive directory of NIT Srinagar graduates with live search, department filtering, and detailed profile views.
+- **News & Spotlight**: Updates, achievements, spotlights, and events regarding alumni and the institute.
+- **Alumni Registration**: Online portal for NIT Srinagar graduates to register their profiles.
+- **Responsive Interface**: Designed for desktop and mobile devices with fast navigation and modern typography.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Backend**: [Frappe Framework](https://frappeframework.com)
+- **Frontend**: Vue 3, Vite, [Frappe UI](https://frappeui.com), Tailwind CSS
+
+---
+
+## ⚙️ Installation
 
 ```bash
+# Navigate to your bench directory
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app alumni_nit_srinagar
+
+# Fetch and install the app
+bench get-app alumni_nit_srinagar --branch develop
+bench --site [site-name] install-app alumni_nit_srinagar
+bench --site [site-name] migrate
 ```
 
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+### Development Setup
 
 ```bash
-cd apps/alumni_nit_srinagar
-pre-commit install
+cd apps/alumni_nit_srinagar/frontend
+
+# Install dependencies
+yarn
+
+# Start development server
+yarn dev
+
+# Build production bundle
+yarn build
 ```
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+---
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
-### CI
+## 📜 License & Credits
 
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
-
-### License
-
-agpl-3.0
+- **Maintained By**: Office of Dean Alumni & International Affairs, NIT Srinagar
+- **Designed & Developed By**: [FOSS Club, NIT Srinagar](https://foss.nitsri.ac.in/)
+- **License**: AGPL-3.0
