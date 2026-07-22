@@ -56,15 +56,17 @@
 					>. Your profile has been successfully registered under the
 					<strong>{{ form.branchdepartment }}</strong> department.
 				</p>
-				<Button
-					variant="solid"
-					theme="blue"
-					size="lg"
-					class="mt-8 px-8 bg-[#17345F] hover:bg-[#12284c] text-white font-bold"
-					@click="goBack"
-				>
-					Go back to Home Page
-				</Button>
+				<router-link to="/">
+					<Button
+						variant="solid"
+						theme="blue"
+						size="lg"
+						class="mt-8 px-8 bg-[#17345F] hover:bg-[#12284c] text-white font-bold"
+						@click="goBack"
+					>
+						Go back to Home Page
+					</Button>
+				</router-link>
 			</div>
 
 			<!-- Form State -->
@@ -449,6 +451,6 @@ const submitForm = () => {
 }
 
 const goBack = () => {
-	router.push({ name: "LandingPage" })
+	router.push("/")
 }
 </script>
