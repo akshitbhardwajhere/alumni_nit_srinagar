@@ -150,6 +150,14 @@
 				</div>
 			</div>
 
+			<!-- Error Alert State -->
+			<div
+				v-if="alumniResource.error"
+				class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm mb-6"
+			>
+				{{ formatErrorMessage(alumniResource.error, "Unable to load alumni records at this time. Please try again later.") }}
+			</div>
+
 			<!-- Loading State -->
 			<div v-if="alumniResource.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-pulse space-y-4">
@@ -227,6 +235,7 @@ import { useRoute, useRouter } from "vue-router"
 import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
 import Footer from "../components/Footer.vue"
+import { formatErrorMessage } from "../utils/errorMessage"
 
 const route = useRoute()
 const router = useRouter()

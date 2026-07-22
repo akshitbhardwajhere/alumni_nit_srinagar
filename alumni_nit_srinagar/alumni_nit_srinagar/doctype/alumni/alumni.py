@@ -16,10 +16,14 @@ class Alumni(Document):
 
 		batchyear: DF.Data
 		branchdepartment: DF.Literal["Computer Science & Engineering (CSE)", "Information Technology (IT)", "Electrical Engineering", "Electronics & Communication Engineering (ECE)", "Mechanical Engineering", "Civil Engineering", "Chemical Engineering", "Metallurgical & Materials Engineering", "Mathematics", "Physics", "Chemistry", "Humanities, Social Sciences & Management (HSS&M)"]
+		company_organization: DF.Data | None
+		designation: DF.Data | None
 		email_address: DF.Data
+		featured: DF.Check
 		full_name: DF.Data
 		image: DF.AttachImage | None
 		phone_number: DF.Phone | None
+		published: DF.Check
 	# end: auto-generated types
 
 	_DOCTYPE_NAME = "Alumni"

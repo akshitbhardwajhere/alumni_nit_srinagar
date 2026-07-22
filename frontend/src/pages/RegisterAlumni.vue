@@ -286,6 +286,7 @@ import { Select, createResource } from "frappe-ui"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import Footer from "../components/Footer.vue"
+import { formatErrorMessage } from "../utils/errorMessage"
 
 const router = useRouter()
 
@@ -297,13 +298,13 @@ const form = reactive({
 	image: "",
 })
 
-const countryCode = ref("+91")
-const phoneNumberVal = ref("")
-
 const loading = ref(false)
 const uploading = ref(false)
 const isSuccess = ref(false)
 const errorMsg = ref("")
+
+const countryCode = ref("+91")
+const phoneNumberVal = ref("")
 
 const branches = [
 	"Computer Science & Engineering (CSE)",
@@ -366,13 +367,16 @@ const handleImageUpload = async (event) => {
 
 		if (!response.ok) {
 			const errData = await response.json()
-			throw new Error(errData._error_message || "Failed to upload image.")
+			throw errData
 		}
 
 		const data = await response.json()
 		form.image = data.message.file_url
 	} catch (err) {
-		errorMsg.value = err.message || "Failed to upload image. Please try again."
+		errorMsg.value = formatErrorMessage(
+			err,
+			"Failed to upload image. Please try again.",
+		)
 	} finally {
 		uploading.value = false
 	}
@@ -390,9 +394,10 @@ const alumniResource = createResource({
 	},
 	onError(err) {
 		loading.value = false
-		errorMsg.value =
-			err.message ||
-			"An error occurred while submitting your registration. Please try again."
+		errorMsg.value = formatErrorMessage(
+			err,
+			"An error occurred while submitting your registration. Please try again.",
+		)
 	},
 })
 
@@ -400,18 +405,30 @@ const submitForm = () => {
 	loading.value = true
 	errorMsg.value = ""
 
+	const email = form.email_address?.trim()
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+	if (!email || !emailRegex.test(email)) {
+		errorMsg.value = "Please enter a valid email address."
+		loading.value = false
+		return
+	}
+
 	if (!form.branchdepartment) {
 		errorMsg.value = "Please select your branch / department."
 		loading.value = false
 		return
 	}
 
-	// Format details before submission.
-	// Frappe's Phone control expects the value formatted as [Country Code]-[Phone Number]
-	// to successfully parse it and render the number on the Desk detail view.
+	// Validate and format phone number before submission
 	let finalPhoneNumber = undefined
 	if (phoneNumberVal.value?.trim()) {
-		finalPhoneNumber = `${countryCode.value}-${phoneNumberVal.value.trim()}`
+		const digitsOnly = phoneNumberVal.value.trim().replace(/\D/g, "")
+		if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+			errorMsg.value = "Please enter a valid phone number (7 to 15 digits)."
+			loading.value = false
+			return
+		}
+		finalPhoneNumber = `${countryCode.value}-${digitsOnly}`
 	}
 
 	const doc = {
@@ -419,7 +436,7 @@ const submitForm = () => {
 		full_name: form.full_name,
 		branchdepartment: form.branchdepartment,
 		batchyear: form.batchyear,
-		email_address: form.email_address,
+		email_address: email,
 		phone_number: finalPhoneNumber,
 		image: form.image || undefined,
 	}
