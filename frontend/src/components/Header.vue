@@ -39,7 +39,7 @@
 				<!-- Top Row on Mobile: Logo/Title + Hamburger Button -->
 				<div class="flex items-center justify-between w-full lg:w-auto">
 					<!-- Logo & Title -->
-					<a href="/" class="flex items-center gap-3 sm:gap-5">
+					<router-link to="/" class="flex items-center gap-3 sm:gap-5">
 						<!-- Seal -->
 						<div
 							class="h-14 w-14 sm:h-20 sm:w-20 lg:h-24 lg:w-24 rounded-full border-2 border-[#D5A33D] bg-white flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden"
@@ -56,7 +56,7 @@
 							<p
 								class="text-2xl sm:text-4xl lg:text-[40px] font-exo-2 font-bold tracking-wide text-gray-200"
 							>
-								Dean Alumni &
+								Dean Alumni &amp;
 							</p>
 							<h1
 								class="text-sm sm:text-xl lg:text-3xl font-exo-2 tracking-wide mt-0.5 sm:mt-1"
@@ -64,7 +64,7 @@
 								International Affairs
 							</h1>
 						</div>
-					</a>
+					</router-link>
 
 					<!-- Mobile Menu Button (Only visible on < lg) -->
 					<button
@@ -119,70 +119,26 @@
 				<div class="hidden lg:flex flex-col items-end gap-4">
 					<!-- Top Links -->
 					<div class="flex items-center gap-4 text-white text-[15px] font-medium">
-						<!-- <a href="#" class="hover:underline">Our Offices</a>
-            <span class="opacity-40">|</span> -->
 						<a href="#" class="hover:underline">Find Help</a>
 						<span class="opacity-40">|</span>
 						<a href="#" class="hover:underline">Contact Us</a>
 					</div>
 
-					<!-- Search -->
-					<div class="flex shadow-sm">
-						<input
-							type="text"
-							placeholder="Search"
-							class="w-72 px-4 py-2.5 text-[15px] rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D] transition-all"
-						/>
-						<button
-							class="bg-[#F2B633] px-5 rounded-r hover:bg-[#D5A33D] text-gray-900 font-bold transition-colors flex items-center justify-center"
-							aria-label="Search"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="h-5 w-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2.5"
-									d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-								/>
-							</svg>
-						</button>
-					</div>
+					<!-- Header Live Search Component (Desktop) -->
+					<HeaderSearch
+						inputClass="w-72 px-4 py-2.5 text-[15px] rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D] transition-all"
+						placeholder="Search Alumni"
+						@selectAlumni="onSelectAlumni"
+					/>
 				</div>
 
-				<!-- Mobile Search Bar (Only visible on < lg, inline under title block) -->
+				<!-- Header Live Search Component (Mobile, visible on < lg) -->
 				<div class="lg:hidden w-full mt-2">
-					<div class="flex shadow-sm">
-						<input
-							type="text"
-							placeholder="Search"
-							class="w-full px-4 py-2.5 text-base rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D]"
-						/>
-						<button
-							class="bg-[#F2B633] px-5 rounded-r hover:bg-[#D5A33D] text-gray-900 font-bold flex items-center justify-center"
-							aria-label="Search"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								class="h-5 w-5"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2.5"
-									d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-								/>
-							</svg>
-						</button>
-					</div>
+					<HeaderSearch
+						inputClass="w-full px-4 py-2.5 text-base rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D]"
+						placeholder="Search Alumni"
+						@selectAlumni="onSelectAlumni"
+					/>
 				</div>
 			</div>
 		</div>
@@ -198,7 +154,12 @@
 				>
 					Home
 				</router-link>
-				<a href="https://nitsri.ac.in/Pages/AboutUs.aspx" target="_blank" rel="noopener noreferrer" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
+				<a
+					href="https://nitsri.ac.in/Pages/AboutUs.aspx"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
+				>
 					About Us
 				</a>
 
@@ -208,22 +169,14 @@
 				>
 					Our Alumni
 				</router-link>
-
-				<router-link
-					:to="{ name: 'RegisterAlumni' }"
-					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
-				>
-					Register Alumni
-				</router-link>
 			</div>
 		</nav>
 
-		<!-- Mobile Navigation Menu Drawer (Only visible on < lg and when menu open) -->
+		<!-- Mobile Navigation Menu Drawer -->
 		<nav
 			v-show="isMobileMenuOpen"
 			class="lg:hidden bg-[#2C2A26] text-white border-t border-[#D5A33D]/20 divide-y divide-[#3D3A35]"
 		>
-			<!-- Main Links -->
 			<router-link
 				to="/"
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
@@ -263,7 +216,7 @@
 				</svg>
 			</router-link>
 
-			<router-link
+			<!-- <router-link
 				:to="{ name: 'RegisterAlumni' }"
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
 				@click="isMobileMenuOpen = false"
@@ -283,9 +236,8 @@
 						d="M9 5l7 7-7 7"
 					/>
 				</svg>
-			</router-link>
+			</router-link> -->
 
-			<!-- Utility Links appended to the bottom -->
 			<a
 				href="#"
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors bg-[#23211F]"
@@ -300,11 +252,24 @@
 				<span class="text-base text-gray-200">Contact Us</span>
 			</a>
 		</nav>
+
+		<!-- Alumni Profile Modal Component -->
+		<AlumniProfileModal
+			:alumni="selectedAlumni"
+			@close="selectedAlumni = null"
+		/>
 	</header>
 </template>
 
 <script setup>
 import { ref } from "vue"
+import AlumniProfileModal from "./AlumniProfileModal.vue"
+import HeaderSearch from "./HeaderSearch.vue"
 
 const isMobileMenuOpen = ref(false)
+const selectedAlumni = ref(null)
+
+const onSelectAlumni = (alumni) => {
+	selectedAlumni.value = alumni
+}
 </script>

@@ -8,8 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AlumniCard: typeof import('./src/components/AlumniCard.vue')['default']
+    AlumniProfileModal: typeof import('./src/components/AlumniProfileModal.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    HeaderSearch: typeof import('./src/components/HeaderSearch.vue')['default']
     InitiativeCard: typeof import('./src/components/InitiativeCard.vue')['default']
     NewsCard: typeof import('./src/components/NewsCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
