@@ -5,7 +5,7 @@
 			<!-- Background Image -->
 			<div class="absolute inset-0">
 				<img
-					src="../assets/nit_srinagar_hero.png"
+					src="/nits.jpg"
 					alt="NIT Srinagar Campus"
 					class="w-full h-full object-cover transform scale-105"
 				/>
