@@ -286,7 +286,7 @@ import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
 import BranchFilterModal from "../components/BranchFilterModal.vue"
 import Footer from "../components/Footer.vue"
-import { formatErrorMessage } from "../utils/errorMessage"
+import { DEPARTMENT_BRANCHES, formatErrorMessage } from "../utils"
 
 const route = useRoute()
 const router = useRouter()
@@ -305,20 +305,7 @@ watch(
 	{ immediate: true },
 )
 
-const branches = [
-	"Computer Science & Engineering (CSE)",
-	"Information Technology (IT)",
-	"Electrical Engineering",
-	"Electronics & Communication Engineering (ECE)",
-	"Mechanical Engineering",
-	"Civil Engineering",
-	"Chemical Engineering",
-	"Metallurgical & Materials Engineering",
-	"Mathematics",
-	"Physics",
-	"Chemistry",
-	"Humanities, Social Sciences & Management (HSS&M)",
-]
+const branches = DEPARTMENT_BRANCHES
 
 const branchOptions = computed(() => [
 	{ label: "All Departments", value: "" },

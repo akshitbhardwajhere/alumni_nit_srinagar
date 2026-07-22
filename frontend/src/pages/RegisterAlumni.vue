@@ -286,7 +286,13 @@ import { Select, createResource } from "frappe-ui"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import Footer from "../components/Footer.vue"
-import { formatErrorMessage } from "../utils/errorMessage"
+import {
+	COUNTRY_OPTIONS,
+	DEPARTMENT_BRANCHES,
+	cleanPhoneNumber,
+	formatErrorMessage,
+	isValidEmail,
+} from "../utils"
 
 const router = useRouter()
 
@@ -306,31 +312,8 @@ const errorMsg = ref("")
 const countryCode = ref("+91")
 const phoneNumberVal = ref("")
 
-const branches = [
-	"Computer Science & Engineering (CSE)",
-	"Information Technology (IT)",
-	"Electrical Engineering",
-	"Electronics & Communication Engineering (ECE)",
-	"Mechanical Engineering",
-	"Civil Engineering",
-	"Chemical Engineering",
-	"Metallurgical & Materials Engineering",
-	"Mathematics",
-	"Physics",
-	"Chemistry",
-	"Humanities, Social Sciences & Management (HSS&M)",
-]
-
-const countryOptions = [
-	{ label: "🇮🇳 +91", value: "+91" },
-	{ label: "🇺🇸 +1", value: "+1" },
-	{ label: "🇬🇧 +44", value: "+44" },
-	{ label: "🇦🇪 +971", value: "+971" },
-	{ label: "🇸🇦 +966", value: "+966" },
-	{ label: "🇦🇺 +61", value: "+61" },
-	{ label: "🇩🇪 +49", value: "+49" },
-	{ label: "🇸🇬 +65", value: "+65" },
-]
+const branches = DEPARTMENT_BRANCHES
+const countryOptions = COUNTRY_OPTIONS
 
 const handleImageUpload = async (event) => {
 	const file = event.target.files[0]
@@ -406,8 +389,7 @@ const submitForm = () => {
 	errorMsg.value = ""
 
 	const email = form.email_address?.trim()
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-	if (!email || !emailRegex.test(email)) {
+	if (!isValidEmail(email)) {
 		errorMsg.value = "Please enter a valid email address."
 		loading.value = false
 		return
@@ -422,7 +404,7 @@ const submitForm = () => {
 	// Validate and format phone number before submission
 	let finalPhoneNumber = undefined
 	if (phoneNumberVal.value?.trim()) {
-		const digitsOnly = phoneNumberVal.value.trim().replace(/\D/g, "")
+		const digitsOnly = cleanPhoneNumber(phoneNumberVal.value)
 		if (digitsOnly.length < 7 || digitsOnly.length > 15) {
 			errorMsg.value = "Please enter a valid phone number (7 to 15 digits)."
 			loading.value = false

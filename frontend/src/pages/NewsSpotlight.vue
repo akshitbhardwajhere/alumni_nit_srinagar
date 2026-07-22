@@ -122,6 +122,7 @@ import { computed, onMounted, ref } from "vue"
 import Footer from "../components/Footer.vue"
 import NewsCard from "../components/NewsCard.vue"
 import NewsDetailModal from "../components/NewsDetailModal.vue"
+import { NEWS_CATEGORIES } from "../utils"
 
 const searchQuery = ref("")
 const selectedCategory = ref("all")
@@ -131,14 +132,7 @@ onMounted(() => {
 	window.scrollTo(0, 0)
 })
 
-const categories = [
-	{ label: "All Updates", value: "all" },
-	{ label: "Hot News", value: "hot" },
-	{ label: "News", value: "News" },
-	{ label: "Spotlight", value: "Spotlight" },
-	{ label: "Achievement", value: "Achievement" },
-	{ label: "Event", value: "Event" },
-]
+const categories = NEWS_CATEGORIES
 
 // Query backend News doctype where published = 1
 const newsResource = createListResource({

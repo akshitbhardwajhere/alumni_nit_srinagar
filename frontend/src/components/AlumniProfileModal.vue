@@ -109,6 +109,7 @@
 <script setup>
 import { Button } from "frappe-ui"
 import { ref } from "vue"
+import { getInitials } from "../utils"
 
 defineProps({
 	alumni: {
@@ -120,14 +121,4 @@ defineProps({
 defineEmits(["close"])
 
 const hasImageError = ref(false)
-
-const getInitials = (name) => {
-	if (!name) return "AN"
-	const cleanName = name.replace(/^(Er\.|Dr\.|Prof\.|Mr\.|Ms\.)\s+/i, "")
-	const parts = cleanName.trim().split(" ")
-	if (parts.length >= 2) {
-		return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase()
-	}
-	return name.substring(0, 2).toUpperCase()
-}
 </script>
