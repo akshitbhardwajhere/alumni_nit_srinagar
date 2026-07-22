@@ -54,12 +54,12 @@
 						<!-- Title -->
 						<div class="text-white leading-none">
 							<p
-								class="text-sm sm:text-xl lg:text-3xl font-geomini tracking-wide text-gray-200"
+								class="text-2xl sm:text-4xl lg:text-[40px] font-exo-2 font-bold tracking-wide text-gray-200"
 							>
 								Dean Alumni &
 							</p>
 							<h1
-								class="text-2xl sm:text-4xl lg:text-[40px] font-exo-2 font-bold tracking-wide mt-0.5 sm:mt-1"
+								class="text-sm sm:text-xl lg:text-3xl font-exo-2 tracking-wide mt-0.5 sm:mt-1"
 							>
 								International Affairs
 							</h1>
@@ -207,7 +207,7 @@
         </a> -->
 
 				<a href="https://nitsri.ac.in/Pages/DisplayPages.aspx?page=caaqq&ItemID=eaeqa" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
-					Achievements
+					Our Alumni
 				</a>
 
 				<!-- <a href="#" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">

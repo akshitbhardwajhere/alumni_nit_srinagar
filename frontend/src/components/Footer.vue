@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="mt-12 pt-8 border-t border-white/10 text-center text-gray-400 font-bold">
-        &copy; 2026 Office of Dean Alumni &amp; International Affairs, NIT Srinagar. All rights reserved.
+        &copy; 2026 <a class="underline hover:text-[#D5A33D]" target="_blank" href="https://foss.nitsri.ac.in/">FOSS Club, NIT Srinagar</a>. All rights reserved.
       </div>
     </div>
   </footer>

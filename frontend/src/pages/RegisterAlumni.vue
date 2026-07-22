@@ -159,7 +159,7 @@
 					<div class="mt-3 text-center">
 						<span
 							class="text-xs font-bold text-gray-500 uppercase tracking-wider block"
-							>Profile Photo</span
+							>Upload your Photo</span
 						>
 						<button
 							v-if="form.image"

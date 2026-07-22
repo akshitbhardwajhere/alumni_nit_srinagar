@@ -20,7 +20,7 @@
         <div class="max-w-3xl">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D5A33D]/25 border border-[#D5A33D]/40 text-[#F2B633] text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6 animate-pulse">
             <span class="w-2 h-2 rounded-full bg-[#F2B633]"></span>
-            Official Alumni &amp; International Portal
+            Official Alumni Portal of NIT Srinagar
           </div>
           
           <h1 class="text-4xl sm:text-5xl lg:text-7xl font-exo-2 font-bold tracking-tight text-white leading-tight">
