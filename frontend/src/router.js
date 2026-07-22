@@ -1,5 +1,5 @@
 import { userResource } from "@/data/user"
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 import { session } from "./data/session"
 
 const routes = [
@@ -43,15 +43,15 @@ const routes = [
 ];
 
 const router = createRouter({
-	history: createWebHistory("/"),
+	history: createWebHashHistory(),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
 		if (savedPosition) {
-			return savedPosition
+			return savedPosition;
 		}
-		return { top: 0, left: 0 }
+		return { top: 0, left: 0 };
 	},
-})
+});
 
 router.beforeEach(async (to, from, next) => {
 	let isLoggedIn = session.isLoggedIn
