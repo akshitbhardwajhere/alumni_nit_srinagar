@@ -6,18 +6,16 @@ const routes = [
 	{
 		path: "/",
 		name: "HomePage",
-		redirect: {
-			name: "LandingPage",
-		},
-	},
-	{
-		path: "/home",
-		name: "LandingPage",
 		component: () => import("@/pages/LandingPage.vue"),
-		meta: {
-			requiresLogin: false,
-		},
 	},
+	// {
+	// 	path: "/home",
+	// 	name: "LandingPage",
+	// 	component: () => import("@/pages/LandingPage.vue"),
+	// 	meta: {
+	// 		requiresLogin: false,
+	// 	},
+	// },
 	{
 		path: "/register-alumni",
 		name: "RegisterAlumni",
@@ -42,7 +40,7 @@ const routes = [
 			requiresLogin: false,
 		},
 	},
-]
+];
 
 const router = createRouter({
 	history: createWebHistory("/"),
@@ -65,7 +63,7 @@ router.beforeEach(async (to, from, next) => {
 
 	if (to.meta.requiresLogin && !isLoggedIn) {
 		// If the route requires login and the user is not logged in, redirect to the Login page
-		window.location.href = "/login?redirect-to=/home"
+		window.location.href = "/login?redirect-to=/"
 	}
 	next()
 })
