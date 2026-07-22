@@ -15,6 +15,7 @@ declare module 'vue' {
     HeaderSearch: typeof import('./src/components/HeaderSearch.vue')['default']
     InitiativeCard: typeof import('./src/components/InitiativeCard.vue')['default']
     NewsCard: typeof import('./src/components/NewsCard.vue')['default']
+    NewsDetailModal: typeof import('./src/components/NewsDetailModal.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

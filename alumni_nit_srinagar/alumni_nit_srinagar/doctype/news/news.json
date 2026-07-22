@@ -6,18 +6,99 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_o1pq"
+  "title",
+  "category",
+  "published_date",
+  "column_break_meta",
+  "is_hot_news",
+  "published",
+  "author_alumni",
+  "section_break_image",
+  "cover_image",
+  "section_break_content",
+  "summary",
+  "content"
  ],
  "fields": [
   {
-   "fieldname": "section_break_o1pq",
-   "fieldtype": "Section Break"
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "default": "News",
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "News\nSpotlight\nAchievement\nEvent",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "published_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Published Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hot_news",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Hot News (Show on Homepage)"
+  },
+  {
+   "default": "1",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Published on Website"
+  },
+  {
+   "fieldname": "author_alumni",
+   "fieldtype": "Link",
+   "label": "Featured Alumni",
+   "options": "Alumni"
+  },
+  {
+   "fieldname": "section_break_image",
+   "fieldtype": "Section Break",
+   "label": "Media"
+  },
+  {
+   "fieldname": "cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Cover Image"
+  },
+  {
+   "fieldname": "section_break_content",
+   "fieldtype": "Section Break",
+   "label": "Article Content"
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary / Excerpt",
+   "reqd": 1
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Text Editor",
+   "label": "Full Article Content"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-21 11:29:49.734705",
+ "modified": "2026-07-22 13:08:00.000000",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "News",
@@ -34,11 +115,17 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Guest"
   }
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
- "sort_field": "creation",
+ "search_fields": "title, category, summary",
+ "sort_field": "published_date",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title"
 }

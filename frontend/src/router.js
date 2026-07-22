@@ -34,11 +34,25 @@ const routes = [
 			requiresLogin: false,
 		},
 	},
+	{
+		path: "/news",
+		name: "NewsSpotlight",
+		component: () => import("@/pages/NewsSpotlight.vue"),
+		meta: {
+			requiresLogin: false,
+		},
+	},
 ]
 
 const router = createRouter({
 	history: createWebHistory("/"),
 	routes,
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		}
+		return { top: 0, left: 0 }
+	},
 })
 
 router.beforeEach(async (to, from, next) => {
