@@ -12,7 +12,7 @@ export default defineConfig({
 			lucideIcons: true,
 			buildConfig: {
 				outDir: "../alumni_nit_srinagar/public/frontend",
-				indexHtmlPath: "../alumni_nit_srinagar/www/frontend.html",
+				indexHtmlPath: "../alumni_nit_srinagar/www/index.html",
 				emptyOutDir: true,
 				sourcemap: true,
 			},
