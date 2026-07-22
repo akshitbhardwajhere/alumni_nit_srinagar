@@ -342,12 +342,26 @@ const handleImageUpload = async (event) => {
 	formData.append("folder", "Home/Attachments")
 
 	try {
+		const getCsrfToken = () => {
+			if (window.csrf_token && window.csrf_token !== "{{ csrf_token }}") {
+				return window.csrf_token
+			}
+			const cookieMatch = document.cookie.match(/(?:^|;\s*)csrf_token=([^;]*)/)
+			if (cookieMatch) {
+				return decodeURIComponent(cookieMatch[1])
+			}
+			return null
+		}
+
 		const headers = {
 			Accept: "application/json",
 			"X-Frappe-Site-Name": window.location.hostname,
 		}
-		if (window.csrf_token && window.csrf_token !== "{{ csrf_token }}") {
-			headers["X-Frappe-CSRF-Token"] = window.csrf_token
+
+		const csrfToken = getCsrfToken()
+		if (csrfToken) {
+			headers["X-Frappe-CSRF-Token"] = csrfToken
+			window.csrf_token = csrfToken
 		}
 
 		const response = await fetch("/api/method/upload_file", {
