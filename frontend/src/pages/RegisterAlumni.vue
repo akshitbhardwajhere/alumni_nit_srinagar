@@ -414,7 +414,7 @@ const submitForm = () => {
 	if (phoneNumberVal.value?.trim()) {
 		const digitsOnly = cleanPhoneNumber(phoneNumberVal.value)
 		if (digitsOnly.length < 7 || digitsOnly.length > 15) {
-			errorMsg.value = "Please enter a valid phone number (7 to 15 digits)."
+			errorMsg.value = "Please enter a valid phone number"
 			loading.value = false
 			return
 		}
