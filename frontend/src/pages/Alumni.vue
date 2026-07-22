@@ -95,8 +95,49 @@
 
 			<!-- Filter & Search Controls Bar -->
 			<div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-6 mb-8">
-				<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-					<!-- Search Input using frappe-ui TextInput -->
+				<!-- Mobile Controls Layout (Visible on < md) -->
+				<div class="flex md:hidden items-center gap-2">
+					<!-- Search Bar on Left -->
+					<div class="flex-1">
+						<TextInput
+							id="alumni-search-mobile"
+							v-model="searchQuery"
+							placeholder="Search by name, role, batch..."
+							size="md"
+							variant="outline"
+							class="w-full"
+						>
+							<template #prefix>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+								</svg>
+							</template>
+						</TextInput>
+					</div>
+
+					<!-- Branch Filter Icon Button on Right -->
+					<button
+						type="button"
+						@click="isBranchModalOpen = true"
+						:class="[
+							'h-10 px-3.5 rounded-lg border flex items-center justify-center gap-1.5 font-bold text-xs relative flex-shrink-0 transition-colors',
+							selectedBranch
+								? 'bg-[#17345F] text-white border-[#17345F] shadow-sm'
+								: 'bg-gray-50 text-gray-700 border-gray-300 hover:bg-gray-100'
+						]"
+						aria-label="Filter Department"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+						</svg>
+						<span class="hidden sm:inline">Filter</span>
+						<span v-if="selectedBranch" class="w-2 h-2 rounded-full bg-[#F2B633]"></span>
+					</button>
+				</div>
+
+				<!-- Desktop Controls Layout (Visible on >= md) -->
+				<div class="hidden md:grid md:grid-cols-12 gap-4 items-center">
+					<!-- Search Input -->
 					<div class="md:col-span-6">
 						<label for="alumni-search" class="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Search</label>
 						<TextInput
@@ -115,7 +156,7 @@
 						</TextInput>
 					</div>
 
-					<!-- Branch Filter using frappe-ui Select -->
+					<!-- Branch Filter Select -->
 					<div class="md:col-span-4">
 						<label for="branch-filter" class="block text-xs font-semibold text-gray-500 mb-1 uppercase tracking-wider">Department / Branch</label>
 						<Select
@@ -129,7 +170,7 @@
 						/>
 					</div>
 
-					<!-- Reset Filters Button using frappe-ui Button -->
+					<!-- Reset Filters Button -->
 					<div class="md:col-span-2 flex items-end h-full pt-5">
 						<Button
 							variant="subtle"
@@ -217,6 +258,15 @@
 			</div>
 		</section>
 
+		<!-- Mobile Branch Filter Selection Modal Component -->
+		<BranchFilterModal
+			:isOpen="isBranchModalOpen"
+			:selectedBranch="selectedBranch"
+			:branches="branches"
+			@select="selectedBranch = $event"
+			@close="isBranchModalOpen = false"
+		/>
+
 		<!-- Profile Detail Modal Component -->
 		<AlumniProfileModal
 			:alumni="selectedAlumni"
@@ -234,6 +284,7 @@ import { computed, ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
+import BranchFilterModal from "../components/BranchFilterModal.vue"
 import Footer from "../components/Footer.vue"
 import { formatErrorMessage } from "../utils/errorMessage"
 
@@ -244,6 +295,7 @@ const searchQuery = ref("")
 const selectedBranch = ref("")
 const selectedAlumni = ref(null)
 const activeTab = ref("all") // "all" or "featured"
+const isBranchModalOpen = ref(false)
 
 watch(
 	() => route.query.search,
