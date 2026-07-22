@@ -51,6 +51,15 @@
 			</div>
 		</section>
 
+		<!-- Breadcrumbs -->
+		<div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 z-20">
+			<Breadcrumbs
+				:items="[
+					{ label: 'Home' }
+				]"
+			/>
+		</div>
+
 		<!-- Statistics Section -->
 		<section class="relative -mt-16 z-20 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="bg-white rounded-xl shadow-xl border border-gray-100 p-6 sm:p-10 grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-gray-100">
@@ -194,7 +203,7 @@
 </template>
 
 <script setup>
-import { createListResource } from "frappe-ui"
+import { Breadcrumbs, createListResource } from "frappe-ui"
 import { computed, ref } from "vue"
 import Footer from "../components/Footer.vue"
 import InitiativeCard from "../components/InitiativeCard.vue"

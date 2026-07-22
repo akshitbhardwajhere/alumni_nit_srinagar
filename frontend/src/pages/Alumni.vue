@@ -62,6 +62,15 @@
 
 		<!-- Main Content Section -->
 		<section class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+			<!-- Breadcrumbs -->
+			<div class="mb-6">
+				<Breadcrumbs
+					:items="[
+						{ label: 'Home', route: '/' },
+						{ label: 'Our Alumni' }
+					]"
+				/>
+			</div>
 			<!-- View Mode & Featured Filter Tabs -->
 			<div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-gray-200 pb-4">
 				<div class="flex items-center gap-2">
@@ -279,7 +288,13 @@
 </template>
 
 <script setup>
-import { Button, Select, TextInput, createListResource } from "frappe-ui"
+import {
+	Breadcrumbs,
+	Button,
+	Select,
+	TextInput,
+	createListResource,
+} from "frappe-ui"
 import { computed, ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import AlumniCard from "../components/AlumniCard.vue"

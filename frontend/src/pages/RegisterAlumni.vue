@@ -1,5 +1,13 @@
 <template>
-	<div class="flex-grow bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+	<div class="flex-grow bg-gray-50 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+		<div class="max-w-2xl w-full mb-6">
+			<Breadcrumbs
+				:items="[
+					{ label: 'Home', route: '/' },
+					{ label: 'Register Alumni' }
+				]"
+			/>
+		</div>
 		<div
 			class="max-w-2xl w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
 		>
@@ -282,7 +290,7 @@
 </template>
 
 <script setup>
-import { Select, createResource } from "frappe-ui"
+import { Breadcrumbs, Select, createResource } from "frappe-ui"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import Footer from "../components/Footer.vue"
