@@ -26,6 +26,14 @@ const routes = [
 			requiresLogin: false,
 		},
 	},
+	{
+		path: "/alumni",
+		name: "Alumni",
+		component: () => import("@/pages/Alumni.vue"),
+		meta: {
+			requiresLogin: false,
+		},
+	},
 ]
 
 const router = createRouter({

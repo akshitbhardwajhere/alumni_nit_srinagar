@@ -192,41 +192,29 @@
 			<div
 				class="mx-auto max-w-7xl flex items-center justify-center gap-10 py-4 text-base font-semibold tracking-wide"
 			>
-				<a
-					href="/"
+				<router-link
+					to="/"
 					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
 				>
 					Home
-				</a>
-				<a href="https://nitsri.ac.in/Pages/AboutUs.aspx" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
+				</router-link>
+				<a href="https://nitsri.ac.in/Pages/AboutUs.aspx" target="_blank" rel="noopener noreferrer" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
 					About Us
 				</a>
 
-				<!-- <a href="#" class="hover:text-[#F2B633] transition-colors">
-          Our Work
-        </a> -->
-
-				<a href="https://nitsri.ac.in/Pages/DisplayPages.aspx?page=caaqq&ItemID=eaeqa" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
+				<router-link
+					:to="{ name: 'Alumni' }"
+					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
+				>
 					Our Alumni
-				</a>
+				</router-link>
 
-				<!-- <a href="#" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
-          Resources
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-          </svg>
-        </a> -->
-
-				<!-- <a href="#" class="hover:text-[#F2B633] transition-colors">
-          Grants
-        </a> -->
-
-				<!-- <a href="#" class="hover:text-[#F2B633] flex items-center gap-1 transition-colors">
-          Employment
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-          </svg>
-        </a> -->
+				<router-link
+					:to="{ name: 'RegisterAlumni' }"
+					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
+				>
+					Register Alumni
+				</router-link>
 			</div>
 		</nav>
 
@@ -236,11 +224,29 @@
 			class="lg:hidden bg-[#2C2A26] text-white border-t border-[#D5A33D]/20 divide-y divide-[#3D3A35]"
 		>
 			<!-- Main Links -->
+			<router-link
+				to="/"
+				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
+				@click="isMobileMenuOpen = false"
+			>
+				<span class="font-semibold text-base">Home</span>
+			</router-link>
+
 			<a
-				href="#"
+				href="https://nitsri.ac.in/Pages/AboutUs.aspx"
+				target="_blank"
+				rel="noopener noreferrer"
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
 			>
-				<span class="font-semibold text-base">About</span>
+				<span class="font-semibold text-base">About Us</span>
+			</a>
+
+			<router-link
+				:to="{ name: 'Alumni' }"
+				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
+				@click="isMobileMenuOpen = false"
+			>
+				<span class="font-semibold text-base">Our Alumni</span>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-4 w-4 text-gray-400"
@@ -255,17 +261,14 @@
 						d="M9 5l7 7-7 7"
 					/>
 				</svg>
-			</a>
+			</router-link>
 
-			<!-- <a href="#" class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors">
-        <span class="font-semibold text-base">Our Work</span>
-      </a> -->
-
-			<a
-				href="#"
+			<router-link
+				:to="{ name: 'RegisterAlumni' }"
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
+				@click="isMobileMenuOpen = false"
 			>
-				<span class="font-semibold text-base">News</span>
+				<span class="font-semibold text-base">Register Alumni</span>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-4 w-4 text-gray-400"
@@ -280,25 +283,7 @@
 						d="M9 5l7 7-7 7"
 					/>
 				</svg>
-			</a>
-
-			<!-- <a href="#" class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors">
-        <span class="font-semibold text-base">Resources</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-        </svg>
-      </a> -->
-
-			<!-- <a href="#" class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors">
-        <span class="font-semibold text-base">Grants</span>
-      </a> -->
-
-			<!-- <a href="#" class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors">
-        <span class="font-semibold text-base">Employment</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-        </svg>
-      </a> -->
+			</router-link>
 
 			<!-- Utility Links appended to the bottom -->
 			<a

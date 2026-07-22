@@ -7,7 +7,18 @@
     <p class="text-gray-600 mt-4 leading-relaxed flex-grow">
       {{ description }}
     </p>
-    <a :href="linkUrl" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#17345F] hover:text-[#D5A33D] transition-colors mt-6">
+    <router-link
+      v-if="linkUrl.startsWith('/')"
+      :to="linkUrl"
+      class="inline-flex items-center gap-1.5 text-sm font-bold text-[#17345F] hover:text-[#D5A33D] transition-colors mt-6"
+    >
+      {{ linkText }} →
+    </router-link>
+    <a
+      v-else
+      :href="linkUrl"
+      class="inline-flex items-center gap-1.5 text-sm font-bold text-[#17345F] hover:text-[#D5A33D] transition-colors mt-6"
+    >
       {{ linkText }} →
     </a>
   </div>

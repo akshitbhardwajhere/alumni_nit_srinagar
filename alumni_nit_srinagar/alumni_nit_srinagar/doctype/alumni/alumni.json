@@ -7,11 +7,16 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "publishing_settings_section",
+  "published",
+  "featured",
   "basic_details_section",
   "full_name",
   "branchdepartment",
-  "column_break_afzr",
   "batchyear",
+  "column_break_afzr",
+  "designation",
+  "company_organization",
   "image",
   "contact_info_section",
   "email_address",
@@ -19,6 +24,27 @@
   "phone_number"
  ],
  "fields": [
+  {
+   "fieldname": "publishing_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Publishing Controls (Desk Admin)"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Publish on Website"
+  },
+  {
+   "default": "0",
+   "fieldname": "featured",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Featured Hotshot"
+  },
   {
    "fieldname": "basic_details_section",
    "fieldtype": "Section Break",
@@ -41,16 +67,35 @@
    "reqd": 1
   },
   {
-   "fieldname": "column_break_afzr",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "batchyear",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Batch/Year",
    "placeholder": "2023-2027",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_afzr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation / Role",
+   "placeholder": "e.g. Vice President / IAS Officer / Founder"
+  },
+  {
+   "fieldname": "company_organization",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company / Organization",
+   "placeholder": "e.g. Google / Microsoft / Govt of India"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
   },
   {
    "fieldname": "contact_info_section",
@@ -73,17 +118,12 @@
    "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Phone Number (Optional)"
-  },
-  {
-   "fieldname": "image",
-   "fieldtype": "Attach Image",
-   "label": "Image"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-21 12:11:34.335031",
+ "modified": "2026-07-22 12:25:00.000000",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",

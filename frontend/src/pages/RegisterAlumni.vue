@@ -235,7 +235,7 @@
 							<TextInput
 								type="tel"
 								v-model="phoneNumberVal"
-								placeholder="Enter your phone number"
+								placeholder="9876543210"
 								variant="outline"
 								size="md"
 								class="flex-2"
@@ -282,12 +282,12 @@
 </template>
 
 <script setup>
-import { Select, createResource } from "frappe-ui";
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { Select, createResource } from "frappe-ui"
+import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
 import Footer from "../components/Footer.vue"
 
-const router = useRouter();
+const router = useRouter()
 
 const form = reactive({
 	full_name: "",
@@ -295,15 +295,15 @@ const form = reactive({
 	batchyear: "",
 	email_address: "",
 	image: "",
-});
+})
 
-const countryCode = ref("+91");
-const phoneNumberVal = ref("");
+const countryCode = ref("+91")
+const phoneNumberVal = ref("")
 
-const loading = ref(false);
-const uploading = ref(false);
-const isSuccess = ref(false);
-const errorMsg = ref("");
+const loading = ref(false)
+const uploading = ref(false)
+const isSuccess = ref(false)
+const errorMsg = ref("")
 
 const branches = [
 	"Computer Science & Engineering (CSE)",
@@ -318,7 +318,7 @@ const branches = [
 	"Physics",
 	"Chemistry",
 	"Humanities, Social Sciences & Management (HSS&M)",
-];
+]
 
 const countryOptions = [
 	{ label: "🇮🇳 +91", value: "+91" },
@@ -329,89 +329,89 @@ const countryOptions = [
 	{ label: "🇦🇺 +61", value: "+61" },
 	{ label: "🇩🇪 +49", value: "+49" },
 	{ label: "🇸🇬 +65", value: "+65" },
-];
+]
 
 const handleImageUpload = async (event) => {
-	const file = event.target.files[0];
-	if (!file) return;
+	const file = event.target.files[0]
+	if (!file) return
 
 	// Validate file size (2MB limit)
 	if (file.size > 2 * 1024 * 1024) {
-		errorMsg.value = "Image size should be less than 2MB.";
-		return;
+		errorMsg.value = "Image size should be less than 2MB."
+		return
 	}
 
-	uploading.value = true;
-	errorMsg.value = "";
+	uploading.value = true
+	errorMsg.value = ""
 
-	const formData = new FormData();
-	formData.append("file", file);
-	formData.append("is_private", 0);
-	formData.append("folder", "Home/Attachments");
+	const formData = new FormData()
+	formData.append("file", file)
+	formData.append("is_private", 0)
+	formData.append("folder", "Home/Attachments")
 
 	try {
 		const headers = {
 			Accept: "application/json",
 			"X-Frappe-Site-Name": window.location.hostname,
-		};
+		}
 		if (window.csrf_token && window.csrf_token !== "{{ csrf_token }}") {
-			headers["X-Frappe-CSRF-Token"] = window.csrf_token;
+			headers["X-Frappe-CSRF-Token"] = window.csrf_token
 		}
 
 		const response = await fetch("/api/method/upload_file", {
 			method: "POST",
 			headers,
 			body: formData,
-		});
+		})
 
 		if (!response.ok) {
-			const errData = await response.json();
-			throw new Error(errData._error_message || "Failed to upload image.");
+			const errData = await response.json()
+			throw new Error(errData._error_message || "Failed to upload image.")
 		}
 
-		const data = await response.json();
-		form.image = data.message.file_url;
+		const data = await response.json()
+		form.image = data.message.file_url
 	} catch (err) {
-		errorMsg.value = err.message || "Failed to upload image. Please try again.";
+		errorMsg.value = err.message || "Failed to upload image. Please try again."
 	} finally {
-		uploading.value = false;
+		uploading.value = false
 	}
-};
+}
 
 const removeImage = () => {
-	form.image = "";
-};
+	form.image = ""
+}
 
 const alumniResource = createResource({
 	url: "frappe.client.insert",
 	onSuccess(data) {
-		loading.value = false;
-		isSuccess.value = true;
+		loading.value = false
+		isSuccess.value = true
 	},
 	onError(err) {
-		loading.value = false;
+		loading.value = false
 		errorMsg.value =
 			err.message ||
-			"An error occurred while submitting your registration. Please try again.";
+			"An error occurred while submitting your registration. Please try again."
 	},
-});
+})
 
 const submitForm = () => {
-	loading.value = true;
-	errorMsg.value = "";
+	loading.value = true
+	errorMsg.value = ""
 
 	if (!form.branchdepartment) {
-		errorMsg.value = "Please select your branch / department.";
-		loading.value = false;
-		return;
+		errorMsg.value = "Please select your branch / department."
+		loading.value = false
+		return
 	}
 
 	// Format details before submission.
 	// Frappe's Phone control expects the value formatted as [Country Code]-[Phone Number]
 	// to successfully parse it and render the number on the Desk detail view.
-	let finalPhoneNumber = undefined;
+	let finalPhoneNumber = undefined
 	if (phoneNumberVal.value?.trim()) {
-		finalPhoneNumber = `${countryCode.value}-${phoneNumberVal.value.trim()}`;
+		finalPhoneNumber = `${countryCode.value}-${phoneNumberVal.value.trim()}`
 	}
 
 	const doc = {
@@ -422,12 +422,12 @@ const submitForm = () => {
 		email_address: form.email_address,
 		phone_number: finalPhoneNumber,
 		image: form.image || undefined,
-	};
+	}
 
-	alumniResource.submit({ doc });
-};
+	alumniResource.submit({ doc })
+}
 
 const goBack = () => {
-	router.push({ name: "LandingPage" });
-};
+	router.push({ name: "LandingPage" })
+}
 </script>
