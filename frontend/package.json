@@ -11,7 +11,7 @@
 		"test": "vitest",
 		"test:run": "vitest run",
 		"test:coverage": "vitest run --coverage",
-		"copy-html-entry": "cp ../alumni_nit_srinagar/public/frontend/index.html ../alumni_nit_srinagar/www/frontend.html"
+		"copy-html-entry": "cp ../alumni_nit_srinagar/public/frontend/index.html ../alumni_nit_srinagar/www/index.html"
 	},
 	"dependencies": {
 		"feather-icons": "^4.29.2",
