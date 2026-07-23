@@ -182,9 +182,9 @@
 					</div>
 				</div>
 
-				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div class="grid grid-cols-1 sm:grid-cols-12 gap-6">
 					<!-- Full Name -->
-					<div class="sm:col-span-2">
+					<div class="sm:col-span-12">
 						<label class="block text-sm font-bold text-gray-700"
 							>Full Name <span class="text-red-500">*</span></label
 						>
@@ -199,7 +199,7 @@
 					</div>
 
 					<!-- Branch/Department -->
-					<div class="sm:col-span-2">
+					<div class="sm:col-span-12">
 						<label class="block text-sm font-bold text-gray-700 mb-1.5"
 							>Branch / Department <span class="text-red-500">*</span></label
 						>
@@ -214,7 +214,7 @@
 					</div>
 
 					<!-- Batch/Year -->
-					<div>
+					<div class="sm:col-span-5">
 						<label class="block text-sm font-bold text-gray-700"
 							>Batch / Year <span class="text-red-500">*</span></label
 						>
@@ -229,7 +229,7 @@
 					</div>
 
 					<!-- Phone Number -->
-					<div>
+					<div class="sm:col-span-7">
 						<label class="block text-sm font-bold text-gray-700 mb-1.5"
 							>Phone Number (Optional)</label
 						>
@@ -245,7 +245,7 @@
 							<TextInput
 								type="tel"
 								v-model="phoneNumberVal"
-								placeholder="9876543210"
+								placeholder="Enter your phone number"
 								variant="outline"
 								size="md"
 								class="flex-1 min-w-0"
@@ -254,7 +254,7 @@
 					</div>
 
 					<!-- Email Address -->
-					<div class="sm:col-span-2">
+					<div class="sm:col-span-12">
 						<label class="block text-sm font-bold text-gray-700"
 							>Email Address <span class="text-red-500">*</span></label
 						>
