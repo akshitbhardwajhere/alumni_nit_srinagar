@@ -30,7 +30,7 @@
    "label": "Publishing Controls (Desk Admin)"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "published",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -124,7 +124,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-22 13:09:05.121518",
+ "modified": "2026-07-23 15:13:28.225501",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",
