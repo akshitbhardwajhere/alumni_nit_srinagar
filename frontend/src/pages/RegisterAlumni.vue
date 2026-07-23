@@ -240,7 +240,7 @@
 								placeholder="ISD"
 								size="md"
 								variant="outline"
-								class="w-21 shrink-0"
+								class="w-28 shrink-0"
 							/>
 							<TextInput
 								type="tel"
@@ -248,7 +248,7 @@
 								placeholder="9876543210"
 								variant="outline"
 								size="md"
-								class="flex-2"
+								class="flex-1 min-w-0"
 							/>
 						</div>
 					</div>

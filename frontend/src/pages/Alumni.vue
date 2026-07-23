@@ -111,7 +111,7 @@
 						<TextInput
 							id="alumni-search-mobile"
 							v-model="searchQuery"
-							placeholder="Search by name, role, batch..."
+							placeholder="Search by name and batch..."
 							size="md"
 							variant="outline"
 							class="w-full"
@@ -152,7 +152,7 @@
 						<TextInput
 							id="alumni-search"
 							v-model="searchQuery"
-							placeholder="Search by name, role, company, batch..."
+							placeholder="Search by name and batch..."
 							size="md"
 							variant="outline"
 							class="w-full"
@@ -383,26 +383,11 @@ const isFiltered = computed(() => {
 
 const filteredAlumniList = computed(() => {
 	return allAlumni.value.filter((alumni) => {
+		const q = searchQuery.value.trim().toLowerCase()
 		const matchesSearch =
-			!searchQuery.value ||
-			alumni.full_name
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase()) ||
-			alumni.email_address
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase()) ||
-			alumni.batchyear
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase()) ||
-			alumni.branchdepartment
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase()) ||
-			alumni.designation
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase()) ||
-			alumni.company_organization
-				?.toLowerCase()
-				.includes(searchQuery.value.toLowerCase())
+			!q ||
+			alumni.full_name?.toLowerCase().includes(q) ||
+			alumni.batchyear?.toLowerCase().includes(q)
 
 		const matchesBranch =
 			!selectedBranch.value || alumni.branchdepartment === selectedBranch.value

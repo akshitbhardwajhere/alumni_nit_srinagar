@@ -127,7 +127,7 @@
 					<!-- Header Live Search Component (Desktop) -->
 					<HeaderSearch
 						inputClass="w-72 px-4 py-2.5 text-[15px] rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D] transition-all"
-						placeholder="Search Alumni"
+						placeholder="Search by name and batch..."
 						@selectAlumni="onSelectAlumni"
 					/>
 				</div>
@@ -136,7 +136,7 @@
 				<div class="lg:hidden w-full mt-2">
 					<HeaderSearch
 						inputClass="w-full px-4 py-2.5 text-base rounded-l bg-white outline-none text-gray-800 focus:ring-2 focus:ring-[#D5A33D]"
-						placeholder="Search Alumni"
+						placeholder="Search by name and batch..."
 						@selectAlumni="onSelectAlumni"
 					/>
 				</div>

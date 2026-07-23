@@ -81,14 +81,14 @@
   {
    "fieldname": "designation",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "in_list_view": 0,
    "label": "Designation / Role",
    "placeholder": "e.g. Vice President / IAS Officer / Founder"
   },
   {
    "fieldname": "company_organization",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "in_list_view": 0,
    "label": "Company / Organization",
    "placeholder": "e.g. Google / Microsoft / Govt of India"
   },

@@ -86,7 +86,7 @@ defineProps({
 	},
 	placeholder: {
 		type: String,
-		default: "Search Alumni",
+		default: "Search by name and batch...",
 	},
 })
 
@@ -126,11 +126,7 @@ const searchResults = computed(() => {
 		.filter((alumni) => {
 			return (
 				alumni.full_name?.toLowerCase().includes(q) ||
-				alumni.email_address?.toLowerCase().includes(q) ||
-				alumni.batchyear?.toLowerCase().includes(q) ||
-				alumni.branchdepartment?.toLowerCase().includes(q) ||
-				alumni.designation?.toLowerCase().includes(q) ||
-				alumni.company_organization?.toLowerCase().includes(q)
+				alumni.batchyear?.toLowerCase().includes(q)
 			)
 		})
 		.slice(0, 6)
