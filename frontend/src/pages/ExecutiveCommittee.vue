@@ -62,6 +62,15 @@
 				</div>
 			</div>
 
+			<!-- Error Alert State (User-Friendly Error Message) -->
+			<div
+				v-if="committeeResource.error"
+				class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm mb-6 flex items-center justify-between"
+			>
+				<span>{{ formatErrorMessage(committeeResource.error, "Unable to load executive committee records at this time. Please try again later.") }}</span>
+				<Button size="sm" variant="subtle" theme="gray" @click="committeeResource.reload()">Retry</Button>
+			</div>
+
 			<!-- Loading Skeleton -->
 			<div v-if="committeeResource.loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 				<div v-for="i in 8" :key="i" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm animate-pulse flex flex-col items-center text-center space-y-4">
@@ -111,6 +120,7 @@ import { Breadcrumbs, Button, TextInput, createListResource } from "frappe-ui"
 import { computed, onMounted, ref } from "vue"
 import ExecutiveCommitteeCard from "../components/ExecutiveCommitteeCard.vue"
 import Footer from "../components/Footer.vue"
+import { formatErrorMessage } from "../utils"
 
 const searchQuery = ref("")
 

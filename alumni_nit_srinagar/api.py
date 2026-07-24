@@ -1,11 +1,16 @@
+import os
 from typing import Any, Dict, List, Optional, Union
 import frappe
+from frappe.utils import validate_email_address
+
+ALLOWED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".svg"}
 
 
 @frappe.whitelist(allow_guest=True)
 def register_alumni(doc: Optional[Union[Dict[str, Any], str]] = None) -> Dict[str, Any]:
 	"""
-	Whitelisted endpoint allowing Guest users to submit Alumni registration.
+	Whitelisted public endpoint allowing Guest users to submit Alumni registration.
+	Enforces backend validation, input sanitization, and sets initial verification state.
 	"""
 	if doc is None:
 		doc = dict(frappe.form_dict)
@@ -16,28 +21,35 @@ def register_alumni(doc: Optional[Union[Dict[str, Any], str]] = None) -> Dict[st
 	if not isinstance(doc, dict):
 		frappe.throw("Invalid registration payload provided.")
 
-	full_name = doc.get("full_name")
-	branchdepartment = doc.get("branchdepartment")
-	batchyear = doc.get("batchyear")
-	email_address = doc.get("email_address")
-	enrollment_number = doc.get("enrollment_number")
+	full_name = str(doc.get("full_name") or "").strip()
+	branchdepartment = str(doc.get("branchdepartment") or "").strip()
+	batchyear = str(doc.get("batchyear") or "").strip()
+	email_address = str(doc.get("email_address") or "").strip()
+	enrollment_number = str(doc.get("enrollment_number") or "").strip()
+	phone_number = str(doc.get("phone_number") or "").strip() if doc.get("phone_number") else None
+	image = str(doc.get("image") or "").strip() if doc.get("image") else None
 
+	# Validate mandatory fields
 	if not full_name or not branchdepartment or not batchyear or not email_address or not enrollment_number:
 		frappe.throw("Missing required fields for Alumni registration.")
 
-	email_clean = str(email_address).strip()
-	if frappe.db.exists("Alumni", {"email_address": email_clean}):
-		frappe.throw(f"An alumni record with email address '{email_clean}' already exists.")
+	# Validate email address format
+	validate_email_address(email_address, throw=True)
 
+	# Check for duplicate email address
+	if frappe.db.exists("Alumni", {"email_address": email_address}):
+		frappe.throw(f"An alumni record with email address already exists.")
+
+	# Create new Alumni record (unverified and unpublished by default)
 	new_doc = frappe.get_doc({
 		"doctype": "Alumni",
-		"full_name": str(full_name).strip(),
+		"full_name": full_name,
 		"branchdepartment": branchdepartment,
-		"batchyear": str(batchyear).strip(),
-		"email_address": email_clean,
-		"enrollment_number": str(enrollment_number).strip(),
-		"phone_number": doc.get("phone_number"),
-		"image": doc.get("image"),
+		"batchyear": batchyear,
+		"email_address": email_address,
+		"enrollment_number": enrollment_number,
+		"phone_number": phone_number,
+		"image": image,
 		"verification": 0,
 		"published": 0,
 	})
@@ -52,14 +64,21 @@ def register_alumni(doc: Optional[Union[Dict[str, Any], str]] = None) -> Dict[st
 def upload_alumni_image() -> Dict[str, str]:
 	"""
 	Whitelisted endpoint for Guest image uploads during Alumni registration.
+	Enforces strict extension and security validation to prevent arbitrary file uploads.
 	"""
 	if "file" not in frappe.request.files:
 		frappe.throw("No file attached in request.")
 
 	file_obj = frappe.request.files["file"]
+	filename = file_obj.filename or "upload.jpg"
+	_, ext = os.path.splitext(filename.lower())
+
+	if ext not in ALLOWED_IMAGE_EXTENSIONS:
+		frappe.throw("Only image files (PNG, JPEG, JPG, WEBP) are allowed for upload.")
+
 	file_doc = frappe.get_doc({
 		"doctype": "File",
-		"file_name": file_obj.filename,
+		"file_name": filename,
 		"is_private": 0,
 		"content": file_obj.read(),
 	})
@@ -95,6 +114,7 @@ def get_executive_committee() -> List[Dict[str, Any]]:
 def get_alumni_list() -> List[Dict[str, Any]]:
 	"""
 	Public whitelisted endpoint to fetch published Alumni directory.
+	Strictly excludes private fields like enrollment_number.
 	"""
 	return frappe.get_all(
 		"Alumni",

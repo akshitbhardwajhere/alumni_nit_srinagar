@@ -173,12 +173,13 @@
 				</div>
 			</div>
 
-			<!-- Error Alert State -->
+			<!-- Error Alert State (User-Friendly Error Message) -->
 			<div
 				v-if="alumniResource.error"
-				class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm mb-6"
+				class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm mb-6 flex items-center justify-between"
 			>
-				{{ formatErrorMessage(alumniResource.error, "Unable to load alumni records at this time. Please try again later.") }}
+				<span>{{ formatErrorMessage(alumniResource.error, "Unable to load alumni records at this time. Please try again later.") }}</span>
+				<Button size="sm" variant="subtle" theme="gray" @click="alumniResource.reload()">Retry</Button>
 			</div>
 
 			<!-- Loading State Skeleton -->
@@ -268,7 +269,7 @@ import {
 	TextInput,
 	createListResource,
 } from "frappe-ui"
-import { computed, ref, watch } from "vue"
+import { computed, onMounted, ref, watch } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
@@ -284,6 +285,10 @@ const selectedBranch = ref("")
 const selectedAlumni = ref(null)
 const activeTab = ref("all") // "all" or "featured"
 const isBranchModalOpen = ref(false)
+
+onMounted(() => {
+	window.scrollTo(0, 0)
+})
 
 watch(
 	() => route.query.search,

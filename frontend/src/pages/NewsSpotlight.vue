@@ -71,6 +71,15 @@
 				</div>
 			</div>
 
+			<!-- Error Alert State -->
+			<div
+				v-if="newsResource.error"
+				class="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm mb-6 flex items-center justify-between"
+			>
+				<span>{{ formatErrorMessage(newsResource.error, "Unable to load news & spotlight stories at this time. Please try again later.") }}</span>
+				<Button size="sm" variant="subtle" theme="gray" @click="newsResource.reload()">Retry</Button>
+			</div>
+
 			<!-- Loading State -->
 			<div v-if="newsResource.loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm animate-pulse space-y-4">
@@ -102,7 +111,7 @@
 			<div v-else class="bg-white rounded-2xl p-12 text-center border border-gray-200 max-w-xl mx-auto my-8">
 				<div class="w-16 h-16 bg-blue-50 text-[#17345F] rounded-full flex items-center justify-center mx-auto mb-4">
 					<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 01-2-2h10a2 2 0 01-2 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
 					</svg>
 				</div>
 				<h3 class="text-xl font-bold text-gray-900">No News or Spotlight Found</h3>
@@ -131,7 +140,7 @@ import { computed, onMounted, ref } from "vue"
 import Footer from "../components/Footer.vue"
 import NewsCard from "../components/NewsCard.vue"
 import NewsDetailModal from "../components/NewsDetailModal.vue"
-import { NEWS_CATEGORIES } from "../utils"
+import { NEWS_CATEGORIES, formatErrorMessage } from "../utils"
 
 const searchQuery = ref("")
 const selectedCategory = ref("all")
