@@ -19,7 +19,7 @@ class ExecutiveCommittee(Document):
 		degree: DF.Literal["B.Tech", "M.Tech", "PhD"]
 		full_name: DF.Data
 		photo: DF.AttachImage | None
-		position: DF.Literal["President", "Vice President", "General Secretary", "Secretary", "Additional Secretary 1", "Additional Secretary 2", "Additional Secretary 3", "Joint Secretary 1", "Joint Secretary 2", "Joint Secretary 3", "Treasurer/Cashier"]
+		position: DF.Literal["President", "Vice President", "General Secretary", "Secretary", "Additional Secretary I", "Additional Secretary II", "Additional Secretary III", "Joint Secretary I", "Joint Secretary II", "Joint Secretary III", "Treasurer/Cashier"]
 		title: DF.Literal["Er.", "Dr."]
 	# end: auto-generated types
 

@@ -53,7 +53,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Position",
-   "options": "President\nVice President\nGeneral Secretary\nSecretary\nAdditional Secretary 1\nAdditional Secretary 2\nAdditional Secretary 3\nJoint Secretary 1\nJoint Secretary 2\nJoint Secretary 3\nTreasurer/Cashier",
+   "options": "President\nVice President\nGeneral Secretary\nSecretary\nAdditional Secretary I\nAdditional Secretary II\nAdditional Secretary III\nJoint Secretary I\nJoint Secretary II\nJoint Secretary III\nTreasurer/Cashier",
    "reqd": 1
   },
   {
@@ -80,7 +80,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-24 23:42:26.737286",
+ "modified": "2026-07-25 00:04:06.930607",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Executive Committee",
