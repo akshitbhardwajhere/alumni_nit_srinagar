@@ -14,9 +14,9 @@
 
 		<div class="p-6 flex flex-col flex-grow">
 			<!-- Featured Badge -->
-			<div v-if="alumni.featured" class="absolute top-4 right-4">
-				<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 shadow-xs">
-					★ Featured
+			<div v-if="alumni.featured" class="absolute top-4 right-4" title="Featured Alumni">
+				<span class="inline-flex items-center justify-center px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300 shadow-xs">
+					★
 				</span>
 			</div>
 
@@ -39,7 +39,7 @@
 				</div>
 
 				<!-- Name & Info -->
-				<div class="flex-1 min-w-0 pr-12">
+				<div class="flex-1 min-w-0 pr-8">
 					<h2 class="text-lg font-bold text-gray-900 group-hover:text-[#17345F] transition-colors truncate">
 						{{ alumni.full_name }}
 					</h2>

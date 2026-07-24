@@ -14,10 +14,12 @@
   "full_name",
   "branchdepartment",
   "batchyear",
+  "image",
   "column_break_afzr",
   "designation",
   "company_organization",
-  "image",
+  "enrollment_number",
+  "verification",
   "contact_info_section",
   "email_address",
   "column_break_djpf",
@@ -30,7 +32,7 @@
    "label": "Publishing Controls (Desk Admin)"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "published",
    "fieldtype": "Check",
    "in_list_view": 1,
@@ -81,14 +83,14 @@
   {
    "fieldname": "designation",
    "fieldtype": "Data",
-   "in_list_view": 0,
+   "in_list_view": 1,
    "label": "Designation / Role",
    "placeholder": "e.g. Vice President / IAS Officer / Founder"
   },
   {
    "fieldname": "company_organization",
    "fieldtype": "Data",
-   "in_list_view": 0,
+   "in_list_view": 1,
    "label": "Company / Organization",
    "placeholder": "e.g. Google / Microsoft / Govt of India"
   },
@@ -119,12 +121,24 @@
    "fieldtype": "Phone",
    "in_list_view": 1,
    "label": "Phone Number (Optional)"
+  },
+  {
+   "fieldname": "enrollment_number",
+   "fieldtype": "Data",
+   "label": "Enrollment Number",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "verification",
+   "fieldtype": "Check",
+   "label": "Is Verified?"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-23 15:13:28.225501",
+ "modified": "2026-07-24 22:30:57.241791",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Alumni",

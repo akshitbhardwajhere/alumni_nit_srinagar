@@ -19,11 +19,13 @@ class Alumni(Document):
 		company_organization: DF.Data | None
 		designation: DF.Data | None
 		email_address: DF.Data
+		enrollment_number: DF.Data
 		featured: DF.Check
 		full_name: DF.Data
 		image: DF.AttachImage | None
 		phone_number: DF.Phone | None
 		published: DF.Check
+		verification: DF.Check
 	# end: auto-generated types
 
 	_DOCTYPE_NAME = "Alumni"
