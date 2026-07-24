@@ -174,7 +174,7 @@
 					:to="{ name: 'ExecutiveCommittee' }"
 					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
 				>
-					Our Committee
+					Executive Committee
 				</router-link>
 
 				<router-link
@@ -235,7 +235,7 @@
 				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
 				@click="isMobileMenuOpen = false"
 			>
-				<span class="font-semibold text-base">Our Committee</span>
+				<span class="font-semibold text-base">Executive Committee</span>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-4 w-4 text-gray-400"
