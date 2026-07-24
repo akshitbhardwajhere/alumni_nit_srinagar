@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { getInitials } from "../utils"
+import { formatPosition, getInitials } from "../utils"
 
 describe("Executive Committee Member Rules Unit Tests", () => {
 	// Helper logic mimicking ExecutiveCommitteeCard computed properties
@@ -39,4 +39,17 @@ describe("Executive Committee Member Rules Unit Tests", () => {
 		expect(getInitials("Dr. Irfan Ahmad")).toBe("IA")
 		expect(getInitials("Prof. Sunil Dutt")).toBe("SD")
 	})
+
+	it("formats Additional Secretary and Joint Secretary positions to hyphenated Roman numerals", () => {
+		expect(formatPosition("Additional Secretary - I")).toBe("Additional Secretary - I")
+		expect(formatPosition("Additional Secretary - II")).toBe("Additional Secretary - II")
+		expect(formatPosition("Additional Secretary - III")).toBe("Additional Secretary - III")
+		expect(formatPosition("Joint Secretary - I")).toBe("Joint Secretary - I")
+		expect(formatPosition("Joint Secretary - II")).toBe("Joint Secretary - II")
+		expect(formatPosition("Joint Secretary - III")).toBe("Joint Secretary - III")
+		expect(formatPosition("Additional Secretary 1")).toBe("Additional Secretary - I")
+		expect(formatPosition("Joint Secretary 2")).toBe("Joint Secretary - II")
+		expect(formatPosition("Additional Secretary I")).toBe("Additional Secretary - I")
+	})
 })
+

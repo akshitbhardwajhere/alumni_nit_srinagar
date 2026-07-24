@@ -1,12 +1,13 @@
-import { describe, expect, it } from "vitest"
 import {
 	cleanPhoneNumber,
 	formatErrorMessage,
+	formatPosition,
 	getInitials,
 	isValidEmail,
 } from "../utils"
 
 describe("Utility Functions Unit Tests", () => {
+
 	describe("getInitials", () => {
 		it("should extract correct 2-letter initials for normal full names", () => {
 			expect(getInitials("Akshit Bhardwaj")).toBe("AB")
@@ -83,4 +84,25 @@ describe("Utility Functions Unit Tests", () => {
 			)
 		})
 	})
+
+	describe("formatPosition", () => {
+		it("should convert Arabic numerals and space-separated Roman numerals to hyphenated Roman numerals", () => {
+			expect(formatPosition("Additional Secretary - I")).toBe("Additional Secretary - I")
+			expect(formatPosition("Additional Secretary - II")).toBe("Additional Secretary - II")
+			expect(formatPosition("Additional Secretary - III")).toBe("Additional Secretary - III")
+			expect(formatPosition("Joint Secretary - I")).toBe("Joint Secretary - I")
+			expect(formatPosition("Joint Secretary - II")).toBe("Joint Secretary - II")
+			expect(formatPosition("Joint Secretary - III")).toBe("Joint Secretary - III")
+			expect(formatPosition("Additional Secretary 1")).toBe("Additional Secretary - I")
+			expect(formatPosition("Joint Secretary 2")).toBe("Joint Secretary - II")
+			expect(formatPosition("Additional Secretary I")).toBe("Additional Secretary - I")
+		})
+
+		it("should preserve other position strings or empty values", () => {
+			expect(formatPosition("President")).toBe("President")
+			expect(formatPosition("")).toBe("")
+			expect(formatPosition(null)).toBe("")
+		})
+	})
 })
+

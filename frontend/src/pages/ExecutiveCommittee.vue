@@ -120,7 +120,7 @@ import { Breadcrumbs, Button, TextInput, createListResource } from "frappe-ui"
 import { computed, onMounted, ref } from "vue"
 import ExecutiveCommitteeCard from "../components/ExecutiveCommitteeCard.vue"
 import Footer from "../components/Footer.vue"
-import { formatErrorMessage } from "../utils"
+import { formatErrorMessage, formatPosition } from "../utils"
 
 const searchQuery = ref("")
 
@@ -152,9 +152,21 @@ const POSITION_HIERARCHY = [
 	"Vice President",
 	"General Secretary",
 	"Secretary",
+	"Additional Secretary - I",
+	"Additional Secretary - II",
+	"Additional Secretary - III",
+	"Additional Secretary I",
+	"Additional Secretary II",
+	"Additional Secretary III",
 	"Additional Secretary 1",
 	"Additional Secretary 2",
 	"Additional Secretary 3",
+	"Joint Secretary - I",
+	"Joint Secretary - II",
+	"Joint Secretary - III",
+	"Joint Secretary I",
+	"Joint Secretary II",
+	"Joint Secretary III",
 	"Joint Secretary 1",
 	"Joint Secretary 2",
 	"Joint Secretary 3",
@@ -163,8 +175,11 @@ const POSITION_HIERARCHY = [
 
 const getPositionRank = (position) => {
 	if (!position) return 999
-	const index = POSITION_HIERARCHY.indexOf(position)
-	return index !== -1 ? index : 900
+	const formatted = formatPosition(position)
+	const index = POSITION_HIERARCHY.indexOf(formatted)
+	if (index !== -1) return index
+	const rawIndex = POSITION_HIERARCHY.indexOf(position)
+	return rawIndex !== -1 ? rawIndex : 900
 }
 
 const allMembers = computed(() => {
@@ -180,11 +195,13 @@ const filteredMembers = computed(() => {
 
 	return allMembers.value.filter((m) => {
 		const nameMatch = m.full_name?.toLowerCase().includes(q)
-		const posMatch = m.position?.toLowerCase().includes(q)
+		const formattedPos = formatPosition(m.position)
+		const posMatch = m.position?.toLowerCase().includes(q) || formattedPos.toLowerCase().includes(q)
 		const branchMatch = m.branchdepartment?.toLowerCase().includes(q)
 		const batchMatch = m.batch?.toLowerCase().includes(q)
 		const degreeMatch = m.degree?.toLowerCase().includes(q)
 		return nameMatch || posMatch || branchMatch || batchMatch || degreeMatch
 	})
 })
+
 </script>

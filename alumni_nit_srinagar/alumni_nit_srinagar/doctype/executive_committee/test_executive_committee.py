@@ -23,6 +23,8 @@ class TestExecutiveCommittee(IntegrationTestCase):
 						"Test President",
 						"Test Vice President",
 						"Test Member No Batch",
+						"Test Additional Secretary",
+						"Test Joint Secretary",
 					],
 				]
 			},
@@ -42,6 +44,8 @@ class TestExecutiveCommittee(IntegrationTestCase):
 						"Test President",
 						"Test Vice President",
 						"Test Member No Batch",
+						"Test Additional Secretary",
+						"Test Joint Secretary",
 					],
 				]
 			},
@@ -119,3 +123,53 @@ class TestExecutiveCommittee(IntegrationTestCase):
 		doc_name = doc.name
 		doc.delete(ignore_permissions=True)
 		self.assertFalse(frappe.db.exists("Executive Committee", doc_name))
+
+	def test_executive_committee_roman_numeral_positions(self):
+		"""Test creating members with hyphenated Roman numeral positions as defined in JSON schema."""
+		doc_add = frappe.get_doc({
+			"doctype": "Executive Committee",
+			"title": "Er.",
+			"full_name": "Test Additional Secretary",
+			"position": "Additional Secretary - I",
+			"branchdepartment": "Civil Engineering",
+			"degree": "B.Tech",
+			"batch": "2008",
+		}).insert(ignore_permissions=True)
+
+		self.assertEqual(doc_add.position, "Additional Secretary - I")
+
+		doc_joint = frappe.get_doc({
+			"doctype": "Executive Committee",
+			"title": "Dr.",
+			"full_name": "Test Joint Secretary",
+			"position": "Joint Secretary - III",
+			"branchdepartment": "Mechanical Engineering",
+			"degree": "PhD",
+			"batch": "2012",
+		}).insert(ignore_permissions=True)
+
+		self.assertEqual(doc_joint.position, "Joint Secretary - III")
+
+	def test_executive_committee_position_options_match_schema(self):
+		"""Test that Executive Committee position options match the updated JSON schema."""
+		meta = frappe.get_meta("Executive Committee")
+		position_field = meta.get_field("position")
+		options = [opt.strip() for opt in position_field.options.split("\n") if opt.strip()]
+
+		expected_positions = [
+			"President",
+			"Vice President",
+			"General Secretary",
+			"Secretary",
+			"Additional Secretary - I",
+			"Additional Secretary - II",
+			"Additional Secretary - III",
+			"Joint Secretary - I",
+			"Joint Secretary - II",
+			"Joint Secretary - III",
+			"Treasurer/Cashier",
+		]
+
+		for pos in expected_positions:
+			self.assertIn(pos, options)
+

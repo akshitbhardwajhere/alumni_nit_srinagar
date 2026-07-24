@@ -30,4 +30,26 @@ export function cleanPhoneNumber(phone) {
 	return phone.trim().replace(/\D/g, "")
 }
 
+/**
+ * Formats position string to display Arabic or plain Roman numerals as hyphenated Roman numerals
+ * for Additional Secretary and Joint Secretary positions (e.g. Additional Secretary - I, Joint Secretary - II).
+ */
+export function formatPosition(pos) {
+	if (!pos) return ""
+	return pos
+		.replace(/\bAdditional Secretary\s*[-–—]?\s*1\b/gi, "Additional Secretary - I")
+		.replace(/\bAdditional Secretary\s*[-–—]?\s*2\b/gi, "Additional Secretary - II")
+		.replace(/\bAdditional Secretary\s*[-–—]?\s*3\b/gi, "Additional Secretary - III")
+		.replace(/\bJoint Secretary\s*[-–—]?\s*1\b/gi, "Joint Secretary - I")
+		.replace(/\bJoint Secretary\s*[-–—]?\s*2\b/gi, "Joint Secretary - II")
+		.replace(/\bJoint Secretary\s*[-–—]?\s*3\b/gi, "Joint Secretary - III")
+		.replace(/\bAdditional Secretary\s+I\b/gi, "Additional Secretary - I")
+		.replace(/\bAdditional Secretary\s+II\b/gi, "Additional Secretary - II")
+		.replace(/\bAdditional Secretary\s+III\b/gi, "Additional Secretary - III")
+		.replace(/\bJoint Secretary\s+I\b/gi, "Joint Secretary - I")
+		.replace(/\bJoint Secretary\s+II\b/gi, "Joint Secretary - II")
+		.replace(/\bJoint Secretary\s+III\b/gi, "Joint Secretary - III")
+}
+
 export { formatErrorMessage }
+

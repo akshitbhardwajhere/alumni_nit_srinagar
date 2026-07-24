@@ -126,7 +126,7 @@ class TestWhitelistedAPIs(IntegrationTestCase):
 			"doctype": "Executive Committee",
 			"title": "Er.",
 			"full_name": "API Committee Test",
-			"position": "Joint Secretary 1",
+			"position": "Joint Secretary - I",
 			"branchdepartment": "Mechanical Engineering",
 			"degree": "B.Tech",
 			"batch": "2010",
