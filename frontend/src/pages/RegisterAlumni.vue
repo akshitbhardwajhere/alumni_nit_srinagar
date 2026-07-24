@@ -50,11 +50,9 @@
 						/>
 					</svg>
 				</div>
-				<h3 class="text-2xl font-bold text-gray-900">Registration Successful!</h3>
+				<h3 class="text-2xl font-bold text-gray-900">Registration Submitted for Review!</h3>
 				<p class="text-gray-600 mt-4 max-w-md leading-relaxed">
-					Thank you, <strong>{{ form.full_name }}</strong
-					>. Your profile has been successfully registered under the
-					<strong>{{ form.branchdepartment }}</strong> department.
+					Thank you, <strong>{{ form.full_name }}</strong>. Your registration has been submitted successfully. The Institute Administration will review your profile. Once verified by the admin, your profile will be published on the portal.
 				</p>
 				<router-link to="/">
 					<Button
@@ -198,6 +196,22 @@
 						/>
 					</div>
 
+					<!-- Enrollment / Roll Number -->
+					<div class="sm:col-span-12">
+						<label class="block text-sm font-bold text-gray-700"
+							>Enrollment Number / Roll Number <span class="text-red-500">*</span></label
+						>
+						<TextInput
+							v-model="form.enrollment_number"
+							placeholder="e.g. 2023CSE015 or 12345"
+							size="md"
+							variant="outline"
+							required
+							class="mt-1.5"
+						/>
+						<p class="text-[11px] text-gray-500 mt-1">Used by Institute Admin for verification only. Will NOT be displayed on public portal.</p>
+					</div>
+
 					<!-- Branch/Department -->
 					<div class="sm:col-span-12">
 						<label class="block text-sm font-bold text-gray-700 mb-1.5"
@@ -308,6 +322,7 @@ const router = useRouter()
 
 const form = reactive({
 	full_name: "",
+	enrollment_number: "",
 	branchdepartment: "",
 	batchyear: "",
 	email_address: "",
@@ -422,6 +437,12 @@ const submitForm = () => {
 		return
 	}
 
+	if (!form.enrollment_number?.trim()) {
+		errorMsg.value = "Please enter your enrollment / roll number."
+		loading.value = false
+		return
+	}
+
 	if (!form.branchdepartment) {
 		errorMsg.value = "Please select your branch / department."
 		loading.value = false
@@ -442,6 +463,7 @@ const submitForm = () => {
 
 	const doc = {
 		full_name: form.full_name,
+		enrollment_number: form.enrollment_number.trim(),
 		branchdepartment: form.branchdepartment,
 		batchyear: form.batchyear,
 		email_address: email,

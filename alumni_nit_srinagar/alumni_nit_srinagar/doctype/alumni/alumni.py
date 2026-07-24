@@ -29,3 +29,7 @@ class Alumni(Document):
 	# end: auto-generated types
 
 	_DOCTYPE_NAME = "Alumni"
+
+	def validate(self):
+		if self.verification:
+			self.published = 1

@@ -20,9 +20,10 @@ def register_alumni(doc: Optional[Union[Dict[str, Any], str]] = None) -> Dict[st
 	branchdepartment = doc.get("branchdepartment")
 	batchyear = doc.get("batchyear")
 	email_address = doc.get("email_address")
+	enrollment_number = doc.get("enrollment_number")
 
-	if not full_name or not branchdepartment or not batchyear or not email_address:
-		frappe.throw("Missing required fields for Alumni registration (Full Name, Department, Batch, Email).")
+	if not full_name or not branchdepartment or not batchyear or not email_address or not enrollment_number:
+		frappe.throw("Missing required fields for Alumni registration.")
 
 	email_clean = str(email_address).strip()
 	if frappe.db.exists("Alumni", {"email_address": email_clean}):
@@ -34,9 +35,11 @@ def register_alumni(doc: Optional[Union[Dict[str, Any], str]] = None) -> Dict[st
 		"branchdepartment": branchdepartment,
 		"batchyear": str(batchyear).strip(),
 		"email_address": email_clean,
+		"enrollment_number": str(enrollment_number).strip(),
 		"phone_number": doc.get("phone_number"),
 		"image": doc.get("image"),
-		"published": 1,
+		"verification": 0,
+		"published": 0,
 	})
 
 	new_doc.insert(ignore_permissions=True)
