@@ -84,11 +84,14 @@ class TestExecutiveCommittee(IntegrationTestCase):
 		self.assertIsNone(doc.batch)
 
 	def test_mandatory_executive_committee_fields(self):
-		"""Test that missing mandatory fields raise MandatoryError."""
+		"""Test that missing mandatory Data field full_name raises MandatoryError."""
 		doc = frappe.get_doc({
 			"doctype": "Executive Committee",
-			"full_name": "Incomplete Officer",
-			# Missing title, position, branchdepartment, degree
+			"title": "Dr.",
+			"position": "President",
+			"branchdepartment": "Computer Science & Engineering (CSE)",
+			"degree": "PhD",
+			# Missing mandatory full_name (Data field, reqd: 1)
 		})
 
 		self.assertRaises(frappe.MandatoryError, doc.insert, ignore_permissions=True)

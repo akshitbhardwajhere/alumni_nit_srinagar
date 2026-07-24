@@ -97,9 +97,10 @@ class TestNews(IntegrationTestCase):
 			"doctype": "Alumni",
 			"full_name": "Author Alumnus",
 			"email_address": "news.author@nitsri.ac.in",
+			"enrollment_number": "2016CSE099",
 			"branchdepartment": "Computer Science & Engineering (CSE)",
 			"batchyear": "2016",
-			"published": 1
+			"published": 1,
 		}).insert(ignore_permissions=True)
 
 		news = frappe.get_doc({
