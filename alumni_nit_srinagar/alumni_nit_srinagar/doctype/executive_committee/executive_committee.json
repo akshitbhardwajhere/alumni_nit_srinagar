@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_bulk_edit": 1,
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "EXEC-CMTE-{batch}-.####",
  "creation": "2026-07-24 21:27:00.404485",
@@ -79,7 +80,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-07-24 21:55:28.750225",
+ "modified": "2026-07-24 23:42:26.737286",
  "modified_by": "Administrator",
  "module": "Alumni NIT Srinagar",
  "name": "Executive Committee",
@@ -97,14 +98,6 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "read": 1,
-   "role": "Guest"
-  },
-  {
-   "read": 1,
-   "role": "All"
   }
  ],
  "row_format": "Dynamic",
