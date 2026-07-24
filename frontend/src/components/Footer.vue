@@ -47,6 +47,11 @@
 							</router-link>
 						</li>
 						<li>
+							<router-link :to="{ name: 'ExecutiveCommittee' }" class="hover:text-white transition-colors flex items-center gap-1.5">
+								<span class="text-[#D5A33D]">›</span> Executive Committee
+							</router-link>
+						</li>
+						<li>
 							<router-link :to="{ name: 'NewsSpotlight' }" class="hover:text-white transition-colors flex items-center gap-1.5">
 								<span class="text-[#D5A33D]">›</span> News &amp; Spotlight
 							</router-link>

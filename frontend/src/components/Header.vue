@@ -171,6 +171,13 @@
 				</router-link>
 
 				<router-link
+					:to="{ name: 'ExecutiveCommittee' }"
+					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
+				>
+					Executive Committee
+				</router-link>
+
+				<router-link
 					:to="{ name: 'NewsSpotlight' }"
 					class="hover:text-[#F2B633] flex items-center gap-1 transition-colors"
 				>
@@ -207,6 +214,28 @@
 				@click="isMobileMenuOpen = false"
 			>
 				<span class="font-semibold text-base">Our Alumni</span>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-4 w-4 text-gray-400"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2.5"
+						d="M9 5l7 7-7 7"
+					/>
+				</svg>
+			</router-link>
+
+			<router-link
+				:to="{ name: 'ExecutiveCommittee' }"
+				class="flex items-center justify-between px-5 py-3.5 hover:bg-[#3D3A35] transition-colors"
+				@click="isMobileMenuOpen = false"
+			>
+				<span class="font-semibold text-base">Executive Committee</span>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-4 w-4 text-gray-400"

@@ -1,5 +1,9 @@
 import { userResource } from "@/data/user"
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
+import {
+	createRouter,
+	createWebHashHistory,
+	createWebHistory,
+} from "vue-router"
 import { session } from "./data/session"
 
 const routes = [
@@ -40,18 +44,26 @@ const routes = [
 			requiresLogin: false,
 		},
 	},
-];
+	{
+		path: "/executive-committee",
+		name: "ExecutiveCommittee",
+		component: () => import("@/pages/ExecutiveCommittee.vue"),
+		meta: {
+			requiresLogin: false,
+		},
+	},
+]
 
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
 		if (savedPosition) {
-			return savedPosition;
+			return savedPosition
 		}
-		return { top: 0, left: 0 };
+		return { top: 0, left: 0 }
 	},
-});
+})
 
 router.beforeEach(async (to, from, next) => {
 	let isLoggedIn = session.isLoggedIn

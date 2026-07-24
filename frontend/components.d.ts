@@ -11,6 +11,7 @@ declare module 'vue' {
     AlumniCard: typeof import('./src/components/AlumniCard.vue')['default']
     AlumniProfileModal: typeof import('./src/components/AlumniProfileModal.vue')['default']
     BranchFilterModal: typeof import('./src/components/BranchFilterModal.vue')['default']
+    ExecutiveCommitteeCard: typeof import('./src/components/ExecutiveCommitteeCard.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     HeaderSearch: typeof import('./src/components/HeaderSearch.vue')['default']

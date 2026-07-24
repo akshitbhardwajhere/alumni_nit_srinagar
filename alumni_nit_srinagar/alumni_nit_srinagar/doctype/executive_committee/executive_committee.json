@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "EXEC-CMTE-{batch}-.####",
+ "creation": "2026-07-24 21:27:00.404485",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_info_section",
+  "title",
+  "position",
+  "branchdepartment",
+  "photo",
+  "column_break_jwcm",
+  "full_name",
+  "degree",
+  "batch"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_info_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Info"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branchdepartment",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Branch/Department",
+   "options": "Computer Science & Engineering (CSE)\nInformation Technology (IT)\nElectrical Engineering\nElectronics & Communication Engineering (ECE)\nMechanical Engineering\nCivil Engineering\nChemical Engineering\nMetallurgical & Materials Engineering\nMathematics\nPhysics\nChemistry\nHumanities, Social Sciences & Management (HSS&M)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "column_break_jwcm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Position",
+   "options": "President\nVice President\nGeneral Secretary\nSecretary\nAdditional Secretary 1\nAdditional Secretary 2\nAdditional Secretary 3\nJoint Secretary 1\nJoint Secretary 2\nJoint Secretary 3\nTreasurer/Cashier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "batch",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Batch"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Select",
+   "label": "Title",
+   "options": "Er.\nDr.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "degree",
+   "fieldtype": "Select",
+   "label": "Degree",
+   "options": "B.Tech\nM.Tech\nPhD",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-24 21:55:28.750225",
+ "modified_by": "Administrator",
+ "module": "Alumni NIT Srinagar",
+ "name": "Executive Committee",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}
