@@ -10,70 +10,46 @@
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
 							</svg>
-							NIT Srinagar Alumni Network
+							Global Network
 						</div>
 						<h1 class="text-3xl sm:text-4xl lg:text-5xl font-exo-2 font-bold tracking-tight text-white">
-							Our Alumni Directory
+							Alumni Directory
 						</h1>
 						<p class="mt-3 text-base sm:text-lg text-gray-200 max-w-2xl leading-relaxed">
-							Featuring distinguished graduates approved by the Institute Administration. Discover leaders, innovators, and achievers from NIT Srinagar across the globe.
+							Connect and engage with our distinguished alumni network around the world across batches and departments.
 						</p>
 					</div>
 					<div class="flex-shrink-0">
-						<router-link :to="{ name: 'RegisterAlumni' }">
-							<Button
-								variant="solid"
-								theme="yellow"
-								size="lg"
-								class="bg-[#F2B633] hover:bg-[#D5A33D] text-gray-950 font-bold shadow-md hover:shadow-xl transition-all"
-							>
-								<template #prefix>
-									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-									</svg>
-								</template>
-								Register as Alumni
-							</Button>
+						<router-link
+							:to="{ name: 'RegisterAlumni' }"
+							class="inline-flex items-center gap-2 px-6 py-3 bg-[#F2B633] hover:bg-[#D5A33D] text-gray-950 font-bold rounded-lg shadow-lg transition-all transform hover:-translate-y-0.5 text-sm"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+							</svg>
+							Register as Alumni
 						</router-link>
 					</div>
 				</div>
-
-				<!-- Stats Bar -->
-				<!-- <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-white/10 text-center">
-					<div class="bg-white/5 rounded-lg p-3 backdrop-blur-sm">
-						<div class="text-2xl font-bold text-[#F2B633]">{{ filteredAlumniList.length }}</div>
-						<div class="text-xs text-gray-300">Published Alumni</div>
-					</div>
-					<div class="bg-white/5 rounded-lg p-3 backdrop-blur-sm">
-						<div class="text-2xl font-bold text-[#F2B633]">{{ featuredCount }}</div>
-						<div class="text-xs text-gray-300">Featured Hotshots</div>
-					</div>
-					<div class="bg-white/5 rounded-lg p-3 backdrop-blur-sm">
-						<div class="text-2xl font-bold text-[#F2B633]">{{ branches.length }}</div>
-						<div class="text-xs text-gray-300">Departments</div>
-					</div>
-					<div class="bg-white/5 rounded-lg p-3 backdrop-blur-sm">
-						<div class="text-2xl font-bold text-[#F2B633]">Verified</div>
-						<div class="text-xs text-gray-300">Desk Managed</div>
-					</div>
-				</div> -->
 			</div>
 		</section>
 
-		<!-- Main Content Section -->
+		<!-- Main Content Area -->
 		<section class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
 			<!-- Breadcrumbs -->
 			<div class="mb-6">
 				<Breadcrumbs
 					:items="[
 						{ label: 'Home', route: '/' },
-						{ label: 'Our Alumni' }
+						{ label: 'Alumni Directory' }
 					]"
 				/>
 			</div>
-			<!-- View Mode & Featured Filter Tabs -->
-			<div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-gray-200 pb-4">
-				<div class="flex items-center gap-2">
+
+			<!-- Top Controls: Tabs & View Toggle -->
+			<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+				<!-- Category Tabs -->
+				<div class="flex flex-wrap items-center gap-2">
 					<button
 						@click="activeTab = 'all'"
 						:class="[
@@ -100,10 +76,42 @@
 						Featured Hotshots ({{ featuredCount }})
 					</button>
 				</div>
+
+				<!-- View Mode Toggle (List vs Grid) -->
+				<div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 shadow-2xs self-start sm:self-auto">
+					<button
+						type="button"
+						@click="viewMode = 'list'"
+						:class="[
+							'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
+							viewMode === 'list' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
+						]"
+						title="Structured List View"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+						<span>Directory List</span>
+					</button>
+					<button
+						type="button"
+						@click="viewMode = 'grid'"
+						:class="[
+							'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
+							viewMode === 'grid' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
+						]"
+						title="Grid View"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+						</svg>
+						<span>Grid Cards</span>
+					</button>
+				</div>
 			</div>
 
 			<!-- Filter & Search Controls Bar -->
-			<div class="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-6 mb-8">
+			<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-5 mb-8">
 				<!-- Mobile Controls Layout (Visible on < md) -->
 				<div class="flex md:hidden items-center gap-2">
 					<!-- Search Bar on Left -->
@@ -111,7 +119,7 @@
 						<TextInput
 							id="alumni-search-mobile"
 							v-model="searchQuery"
-							placeholder="Search by name and batch..."
+							placeholder="Search by name, branch, batch..."
 							size="md"
 							variant="outline"
 							class="w-full"
@@ -152,7 +160,7 @@
 						<TextInput
 							id="alumni-search"
 							v-model="searchQuery"
-							placeholder="Search by name and batch..."
+							placeholder="Search by name, branch, batch..."
 							size="md"
 							variant="outline"
 							class="w-full"
@@ -185,7 +193,7 @@
 							variant="subtle"
 							theme="gray"
 							size="md"
-							class="w-full justify-center py-2"
+							class="w-full justify-center py-2 font-bold text-xs"
 							:disabled="!isFiltered"
 							@click="resetFilters"
 						>
@@ -209,28 +217,168 @@
 			</div>
 
 			<!-- Loading State -->
-			<div v-if="alumniResource.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-100 shadow-sm animate-pulse space-y-4">
-					<div class="flex items-center space-x-4">
-						<div class="rounded-full bg-gray-200 h-16 w-16"></div>
-						<div class="flex-1 space-y-2">
-							<div class="h-4 bg-gray-200 rounded w-3/4"></div>
-							<div class="h-3 bg-gray-200 rounded w-1/2"></div>
-						</div>
+			<div v-if="alumniResource.loading" class="space-y-3">
+				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-4 border border-gray-200 shadow-2xs animate-pulse flex items-center gap-4">
+					<div class="rounded-full bg-gray-200 h-12 w-12 flex-shrink-0"></div>
+					<div class="flex-1 space-y-2">
+						<div class="h-4 bg-gray-200 rounded w-1/3"></div>
+						<div class="h-3 bg-gray-200 rounded w-1/4"></div>
 					</div>
-					<div class="h-3 bg-gray-200 rounded w-full"></div>
-					<div class="h-3 bg-gray-200 rounded w-2/3"></div>
 				</div>
 			</div>
 
-			<!-- Alumni Grid with AlumniCard Component -->
-			<div v-else-if="filteredAlumniList.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-				<AlumniCard
-					v-for="alumni in filteredAlumniList"
-					:key="alumni.name || alumni.email_address"
-					:alumni="alumni"
-					@select="selectedAlumni = $event"
-				/>
+			<!-- Alumni Directory List View (Default - Space Saving & Professional) -->
+			<div v-else-if="filteredAlumniList.length > 0">
+				<!-- List Mode -->
+				<div v-if="viewMode === 'list'" class="bg-white rounded-xl border border-gray-200/90 shadow-sm overflow-hidden">
+					<!-- Desktop Table View (>= lg) -->
+					<div class="hidden lg:block overflow-x-auto">
+						<table class="w-full text-left border-collapse">
+							<thead>
+								<tr class="bg-[#17345F] text-white text-xs font-bold font-exo-2 uppercase tracking-wider">
+									<th scope="col" class="py-3.5 px-6">Alumni Member</th>
+									<th scope="col" class="py-3.5 px-6">Department / Branch</th>
+									<th scope="col" class="py-3.5 px-6">Batch</th>
+									<th scope="col" class="py-3.5 px-6">Contact Details</th>
+									<th scope="col" class="py-3.5 px-6 text-right">Action</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-gray-100 text-sm">
+								<tr
+									v-for="alumni in filteredAlumniList"
+									:key="alumni.name || alumni.email_address"
+									class="hover:bg-blue-50/40 transition-colors group cursor-pointer"
+									@click="selectedAlumni = alumni"
+								>
+									<!-- Member Profile -->
+									<td class="py-4 px-6">
+										<div class="flex items-center gap-3.5">
+											<img
+												v-if="alumni.image && !imageErrors[alumni.name]"
+												:src="alumni.image"
+												:alt="alumni.full_name"
+												class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-2xs flex-shrink-0"
+												@error="imageErrors[alumni.name] = true"
+											/>
+											<div
+												v-else
+												class="w-11 h-11 rounded-full bg-gradient-to-br from-[#17345F] to-[#255294] text-white flex items-center justify-center font-bold text-sm flex-shrink-0"
+											>
+												{{ getInitials(alumni.full_name) }}
+											</div>
+											<div class="min-w-0">
+												<div class="flex items-center gap-2">
+													<span class="font-bold text-gray-900 group-hover:text-[#17345F] font-exo-2 text-base truncate">
+														{{ alumni.full_name }}
+													</span>
+													<span v-if="alumni.featured" class="text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.2 rounded-full">
+														★ Featured
+													</span>
+												</div>
+												<p v-if="alumni.designation || alumni.company_organization" class="text-xs text-gray-500 truncate mt-0.5">
+													{{ alumni.designation }} <span v-if="alumni.designation && alumni.company_organization" class="text-gray-400">at</span> {{ alumni.company_organization }}
+												</p>
+											</div>
+										</div>
+									</td>
+
+									<!-- Department -->
+									<td class="py-4 px-6">
+										<span class="inline-block px-2.5 py-1 bg-slate-100 text-[#17345F] rounded-md text-xs font-semibold border border-slate-200">
+											{{ alumni.branchdepartment }}
+										</span>
+									</td>
+
+									<!-- Batch -->
+									<td class="py-4 px-6">
+										<span class="font-bold text-xs text-[#B8841D]">
+											{{ alumni.batchyear || 'N/A' }}
+										</span>
+									</td>
+
+									<!-- Contact -->
+									<td class="py-4 px-6 text-xs text-gray-600 space-y-0.5">
+										<div class="font-medium text-gray-700 truncate">{{ alumni.email_address }}</div>
+										<div v-if="alumni.phone_number" class="text-gray-500 font-mono text-[11px]">{{ alumni.phone_number }}</div>
+									</td>
+
+									<!-- Action Button -->
+									<td class="py-4 px-6 text-right">
+										<button
+											type="button"
+											class="px-3.5 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider text-[#17345F] hover:bg-[#17345F] hover:text-white border border-gray-200 transition-all shadow-2xs inline-flex items-center gap-1"
+											@click.stop="selectedAlumni = alumni"
+										>
+											<span>View</span>
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+											</svg>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Mobile Dense Compact Rows (< lg - Takes minimal vertical height!) -->
+					<div class="lg:hidden divide-y divide-gray-100">
+						<div
+							v-for="alumni in filteredAlumniList"
+							:key="alumni.name || alumni.email_address"
+							@click="selectedAlumni = alumni"
+							class="p-3.5 hover:bg-blue-50/40 active:bg-blue-100/50 transition-colors flex items-center justify-between gap-3 cursor-pointer"
+						>
+							<div class="flex items-center gap-3 min-w-0">
+								<!-- Compact Avatar -->
+								<img
+									v-if="alumni.image && !imageErrors[alumni.name]"
+									:src="alumni.image"
+									:alt="alumni.full_name"
+									class="w-11 h-11 rounded-full object-cover border border-gray-200 flex-shrink-0"
+									@error="imageErrors[alumni.name] = true"
+								/>
+								<div
+									v-else
+									class="w-11 h-11 rounded-full bg-[#17345F] text-white flex items-center justify-center font-bold text-xs flex-shrink-0"
+								>
+									{{ getInitials(alumni.full_name) }}
+								</div>
+
+								<!-- Info -->
+								<div class="min-w-0">
+									<div class="flex items-center gap-1.5 truncate">
+										<h4 class="font-bold font-exo-2 text-sm text-gray-900 truncate">{{ alumni.full_name }}</h4>
+										<span v-if="alumni.featured" class="text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded flex-shrink-0">★</span>
+									</div>
+									<p class="text-xs text-[#17345F] font-semibold truncate mt-0.5">
+										{{ alumni.branchdepartment }}
+									</p>
+									<div class="flex items-center gap-2 text-[11px] text-gray-500 mt-0.5">
+										<span class="font-bold text-[#B8841D]">Batch: {{ alumni.batchyear }}</span>
+										<span v-if="alumni.designation" class="truncate">• {{ alumni.designation }}</span>
+									</div>
+								</div>
+							</div>
+
+							<!-- Arrow Action -->
+							<div class="flex-shrink-0 text-gray-400">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Grid Mode -->
+				<div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					<AlumniCard
+						v-for="alumni in filteredAlumniList"
+						:key="alumni.name || alumni.email_address"
+						:alumni="alumni"
+						@select="selectedAlumni = $event"
+					/>
+				</div>
 			</div>
 
 			<!-- Empty State -->
@@ -272,11 +420,11 @@
 			:isOpen="isBranchModalOpen"
 			:selectedBranch="selectedBranch"
 			:branches="branches"
-			@select="selectedBranch = $event"
 			@close="isBranchModalOpen = false"
+			@select="onModalSelectBranch"
 		/>
 
-		<!-- Profile Detail Modal Component -->
+		<!-- Alumni Profile Detail Modal -->
 		<AlumniProfileModal
 			:alumni="selectedAlumni"
 			@close="selectedAlumni = null"
@@ -301,7 +449,7 @@ import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
 import BranchFilterModal from "../components/BranchFilterModal.vue"
 import Footer from "../components/Footer.vue"
-import { DEPARTMENT_BRANCHES, formatErrorMessage } from "../utils"
+import { DEPARTMENT_BRANCHES, formatErrorMessage, getInitials } from "../utils"
 
 const route = useRoute()
 const router = useRouter()
@@ -310,7 +458,9 @@ const searchQuery = ref("")
 const selectedBranch = ref("")
 const selectedAlumni = ref(null)
 const activeTab = ref("all") // "all" or "featured"
+const viewMode = ref("list") // "list" or "grid"
 const isBranchModalOpen = ref(false)
+const imageErrors = ref({})
 
 watch(
 	() => route.query.search,
@@ -374,47 +524,58 @@ const featuredCount = computed(() => {
 	return allAlumni.value.filter((a) => a.featured).length
 })
 
-const isFiltered = computed(() => {
-	return (
-		searchQuery.value.trim() !== "" ||
-		selectedBranch.value !== "" ||
-		activeTab.value !== "all"
-	)
-})
-
 const filteredAlumniList = computed(() => {
+	const q = searchQuery.value.trim().toLowerCase()
+	const branch = selectedBranch.value
+
 	return allAlumni.value.filter((alumni) => {
-		const q = searchQuery.value.trim().toLowerCase()
-		const matchesSearch =
-			!q ||
-			alumni.full_name?.toLowerCase().includes(q) ||
-			alumni.batchyear?.toLowerCase().includes(q)
+		// Filter by Tab
+		if (activeTab.value === "featured" && !alumni.featured) {
+			return false
+		}
 
-		const matchesBranch =
-			!selectedBranch.value || alumni.branchdepartment === selectedBranch.value
+		// Filter by Branch
+		if (branch && alumni.branchdepartment !== branch) {
+			return false
+		}
 
-		const matchesTab =
-			activeTab.value === "all" ||
-			(activeTab.value === "featured" && alumni.featured)
+		// Search Query filter (matches Name, Batch, Designation, Company, or Email)
+		if (q) {
+			const nameMatch = alumni.full_name?.toLowerCase().includes(q)
+			const batchMatch = alumni.batchyear?.toLowerCase().includes(q)
+			const branchMatch = alumni.branchdepartment?.toLowerCase().includes(q)
+			const designationMatch = alumni.designation?.toLowerCase().includes(q)
+			const companyMatch = alumni.company_organization?.toLowerCase().includes(q)
+			const emailMatch = alumni.email_address?.toLowerCase().includes(q)
 
-		return matchesSearch && matchesBranch && matchesTab
+			if (
+				!nameMatch &&
+				!batchMatch &&
+				!branchMatch &&
+				!designationMatch &&
+				!companyMatch &&
+				!emailMatch
+			) {
+				return false
+			}
+		}
+
+		return true
 	})
 })
 
-const uniqueBatches = computed(() => {
-	const set = new Set()
-	for (const a of allAlumni.value) {
-		if (a.batchyear) set.add(a.batchyear)
-	}
-	return Array.from(set)
+const isFiltered = computed(() => {
+	return !!searchQuery.value || !!selectedBranch.value || activeTab.value !== "all"
 })
 
 const resetFilters = () => {
 	searchQuery.value = ""
 	selectedBranch.value = ""
 	activeTab.value = "all"
-	if (route.query.search) {
-		router.replace({ name: "Alumni" })
-	}
+	router.replace({ query: {} })
+}
+
+const onModalSelectBranch = (branch) => {
+	selectedBranch.value = branch
 }
 </script>

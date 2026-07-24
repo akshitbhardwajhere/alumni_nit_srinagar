@@ -35,51 +35,216 @@
 				/>
 			</div>
 
-			<!-- Search & Control Bar -->
-			<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+			<!-- Search & View Toggle Controls Bar -->
+			<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
 				<div>
 					<h2 class="text-xl font-bold text-gray-900 font-exo-2">
-						Committee Members ({{ filteredMembers.length }})
+						Committee Office Bearers ({{ filteredMembers.length }})
 					</h2>
-					<p class="text-xs text-gray-500 mt-0.5">Office bearers guiding the global NIT Srinagar alumni network</p>
+					<p class="text-xs text-gray-500 mt-0.5">Governing officers of the global NIT Srinagar alumni network</p>
 				</div>
 
-				<!-- Search Input -->
-				<div class="w-full md:w-80">
-					<TextInput
-						v-model="searchQuery"
-						placeholder="Search by name, position, branch..."
-						size="md"
-						variant="outline"
-						class="w-full"
-					>
-						<template #prefix>
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+				<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+					<!-- Search Input -->
+					<div class="w-full sm:w-72">
+						<TextInput
+							v-model="searchQuery"
+							placeholder="Search by name, position, branch..."
+							size="md"
+							variant="outline"
+							class="w-full"
+						>
+							<template #prefix>
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+								</svg>
+							</template>
+						</TextInput>
+					</div>
+
+					<!-- View Mode Toggle (List vs Grid) -->
+					<div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 shadow-2xs">
+						<button
+							type="button"
+							@click="viewMode = 'list'"
+							:class="[
+								'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
+								viewMode === 'list' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
+							]"
+							title="Structured Table View"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 							</svg>
-						</template>
-					</TextInput>
+							<span>Table View</span>
+						</button>
+						<button
+							type="button"
+							@click="viewMode = 'grid'"
+							:class="[
+								'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
+								viewMode === 'grid' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
+							]"
+							title="Grid Card View"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+							</svg>
+							<span>Grid View</span>
+						</button>
+					</div>
 				</div>
 			</div>
 
 			<!-- Loading Skeleton -->
-			<div v-if="committeeResource.loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-				<div v-for="i in 8" :key="i" class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm animate-pulse flex flex-col items-center text-center space-y-4">
-					<div class="h-4 bg-gray-200 rounded w-1/2"></div>
-					<div class="w-24 h-24 rounded-full bg-gray-200"></div>
-					<div class="h-5 bg-gray-200 rounded w-3/4"></div>
-					<div class="h-3 bg-gray-200 rounded w-2/3"></div>
-					<div class="h-3 bg-gray-200 rounded w-1/3"></div>
+			<div v-if="committeeResource.loading" class="space-y-3">
+				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-4 border border-gray-200 shadow-2xs animate-pulse flex items-center gap-4">
+					<div class="rounded-full bg-gray-200 h-12 w-12 flex-shrink-0"></div>
+					<div class="flex-1 space-y-2">
+						<div class="h-4 bg-gray-200 rounded w-1/3"></div>
+						<div class="h-3 bg-gray-200 rounded w-1/4"></div>
+					</div>
 				</div>
 			</div>
 
-			<!-- Committee Members Grid -->
-			<div v-else-if="filteredMembers.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-				<ExecutiveCommitteeCard
-					v-for="member in filteredMembers"
-					:key="member.name"
-					:member="member"
-				/>
+			<!-- Executive Committee Content -->
+			<div v-else-if="filteredMembers.length > 0">
+				<!-- Table / List View (Default - Space Saving & Prestigious) -->
+				<div v-if="viewMode === 'list'" class="bg-white rounded-xl border border-gray-200/90 shadow-sm overflow-hidden">
+					<!-- Desktop Institutional Table (>= lg) -->
+					<div class="hidden lg:block overflow-x-auto">
+						<table class="w-full text-left border-collapse">
+							<thead>
+								<tr class="bg-[#17345F] text-white text-xs font-bold font-exo-2 uppercase tracking-wider">
+									<th scope="col" class="py-3.5 px-6">Executive Officer</th>
+									<th scope="col" class="py-3.5 px-6">Position</th>
+									<th scope="col" class="py-3.5 px-6">Department / Branch</th>
+									<th scope="col" class="py-3.5 px-6">Degree</th>
+									<th scope="col" class="py-3.5 px-6 text-right">Batch</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-gray-100 text-sm">
+								<tr
+									v-for="member in filteredMembers"
+									:key="member.name"
+									class="hover:bg-blue-50/40 transition-colors group"
+								>
+									<!-- Officer Avatar & Name -->
+									<td class="py-4 px-6">
+										<div class="flex items-center gap-3.5">
+											<img
+												v-if="member.photo && !imageErrors[member.name]"
+												:src="member.photo"
+												:alt="member.full_name"
+												class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-2xs flex-shrink-0"
+												@error="imageErrors[member.name] = true"
+											/>
+											<div
+												v-else
+												class="w-11 h-11 rounded-full bg-gradient-to-br from-[#17345F] to-[#255294] text-white flex items-center justify-center font-bold text-sm flex-shrink-0"
+											>
+												{{ getInitials(member.full_name) }}
+											</div>
+											<div>
+												<span class="font-bold text-gray-900 font-exo-2 text-base block group-hover:text-[#17345F] transition-colors">
+													{{ (member.title ? member.title + ' ' : '') + member.full_name }}
+												</span>
+											</div>
+										</div>
+									</td>
+
+									<!-- Position Badge -->
+									<td class="py-4 px-6">
+										<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#17345F] text-white shadow-2xs">
+											<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-[#F2B633]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+											</svg>
+											{{ member.position }}
+										</span>
+									</td>
+
+									<!-- Branch / Department -->
+									<td class="py-4 px-6">
+										<span class="inline-block px-2.5 py-1 bg-slate-100 text-[#17345F] rounded-md text-xs font-semibold border border-slate-200">
+											{{ member.branchdepartment }}
+										</span>
+									</td>
+
+									<!-- Degree -->
+									<td class="py-4 px-6">
+										<span v-if="member.degree" class="text-xs font-semibold text-gray-700 bg-gray-100 px-2 py-0.5 rounded border border-gray-200">
+											{{ member.degree }}
+										</span>
+										<span v-else class="text-gray-300">-</span>
+									</td>
+
+									<!-- Batch (ONLY if present) -->
+									<td class="py-4 px-6 text-right">
+										<span v-if="member.batch && String(member.batch).trim()" class="font-bold text-xs text-[#B8841D]">
+											Batch: {{ member.batch }}
+										</span>
+										<span v-else class="text-gray-300">-</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Mobile Dense Compact Rows (< lg - Takes minimal vertical height!) -->
+					<div class="lg:hidden divide-y divide-gray-100">
+						<div
+							v-for="member in filteredMembers"
+							:key="member.name"
+							class="p-3.5 hover:bg-blue-50/40 transition-colors flex items-center justify-between gap-3"
+						>
+							<div class="flex items-center gap-3 min-w-0">
+								<!-- Avatar -->
+								<img
+									v-if="member.photo && !imageErrors[member.name]"
+									:src="member.photo"
+									:alt="member.full_name"
+									class="w-11 h-11 rounded-full object-cover border border-gray-200 flex-shrink-0"
+									@error="imageErrors[member.name] = true"
+								/>
+								<div
+									v-else
+									class="w-11 h-11 rounded-full bg-[#17345F] text-white flex items-center justify-center font-bold text-xs flex-shrink-0"
+								>
+									{{ getInitials(member.full_name) }}
+								</div>
+
+								<!-- Member Info -->
+								<div class="min-w-0">
+									<div class="flex items-center gap-1.5 truncate">
+										<h4 class="font-bold font-exo-2 text-sm text-gray-900 truncate">
+											{{ (member.title ? member.title + ' ' : '') + member.full_name }}
+										</h4>
+									</div>
+									<div class="flex items-center gap-1.5 mt-0.5">
+										<span class="text-[10px] font-bold bg-[#17345F] text-white px-2 py-0.2 rounded-full truncate">
+											{{ member.position }}
+										</span>
+										<span v-if="member.batch && String(member.batch).trim()" class="text-[11px] font-bold text-[#B8841D] truncate">
+											• Batch: {{ member.batch }}
+										</span>
+									</div>
+									<p class="text-xs text-gray-500 truncate mt-0.5">
+										{{ member.branchdepartment }} <span v-if="member.degree">({{ member.degree }})</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Grid Mode -->
+				<div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+					<ExecutiveCommitteeCard
+						v-for="member in filteredMembers"
+						:key="member.name"
+						:member="member"
+					/>
+				</div>
 			</div>
 
 			<!-- Empty State -->
@@ -111,8 +276,11 @@ import { Breadcrumbs, Button, TextInput, createListResource } from "frappe-ui"
 import { computed, onMounted, ref } from "vue"
 import ExecutiveCommitteeCard from "../components/ExecutiveCommitteeCard.vue"
 import Footer from "../components/Footer.vue"
+import { getInitials } from "../utils"
 
 const searchQuery = ref("")
+const viewMode = ref("list") // "list" (Table View) or "grid"
+const imageErrors = ref({})
 
 onMounted(() => {
 	window.scrollTo(0, 0)
