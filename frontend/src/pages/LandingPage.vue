@@ -215,6 +215,7 @@ const selectedNews = ref(null)
 // Query backend News doctype where published = 1
 const newsResource = createListResource({
 	doctype: "News",
+	url: "alumni_nit_srinagar.api.get_news_list",
 	fields: [
 		"name",
 		"title",

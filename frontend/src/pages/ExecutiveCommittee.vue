@@ -121,6 +121,7 @@ onMounted(() => {
 // Query Executive Committee DocType
 const committeeResource = createListResource({
 	doctype: "Executive Committee",
+	url: "alumni_nit_srinagar.api.get_executive_committee",
 	fields: [
 		"name",
 		"title",

@@ -366,11 +366,14 @@ const handleImageUpload = async (event) => {
 			window.csrf_token = csrfToken
 		}
 
-		const response = await fetch("/api/method/upload_file", {
-			method: "POST",
-			headers,
-			body: formData,
-		})
+		const response = await fetch(
+			"/api/method/alumni_nit_srinagar.api.upload_alumni_image",
+			{
+				method: "POST",
+				headers,
+				body: formData,
+			},
+		)
 
 		if (!response.ok) {
 			const errData = await response.json()
@@ -378,7 +381,7 @@ const handleImageUpload = async (event) => {
 		}
 
 		const data = await response.json()
-		form.image = data.message.file_url
+		form.image = data.message?.file_url || data.file_url
 	} catch (err) {
 		errorMsg.value = formatErrorMessage(
 			err,
@@ -394,7 +397,7 @@ const removeImage = () => {
 }
 
 const alumniResource = createResource({
-	url: "frappe.client.insert",
+	url: "alumni_nit_srinagar.api.register_alumni",
 	onSuccess(data) {
 		loading.value = false
 		isSuccess.value = true
@@ -438,7 +441,6 @@ const submitForm = () => {
 	}
 
 	const doc = {
-		doctype: "Alumni",
 		full_name: form.full_name,
 		branchdepartment: form.branchdepartment,
 		batchyear: form.batchyear,

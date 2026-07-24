@@ -100,6 +100,7 @@ const route = useRoute()
 // Query backend published alumni for live header search
 const alumniSearchResource = createListResource({
 	doctype: "Alumni",
+	url: "alumni_nit_srinagar.api.get_alumni_list",
 	fields: [
 		"name",
 		"full_name",

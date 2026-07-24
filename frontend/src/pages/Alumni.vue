@@ -330,6 +330,7 @@ const branchOptions = computed(() => [
 // Frappe UI list resource to query backend database
 const alumniResource = createListResource({
 	doctype: "Alumni",
+	url: "alumni_nit_srinagar.api.get_alumni_list",
 	fields: [
 		"name",
 		"full_name",
