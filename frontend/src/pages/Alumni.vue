@@ -46,68 +46,33 @@
 				/>
 			</div>
 
-			<!-- Top Controls: Tabs & View Toggle -->
-			<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-				<!-- Category Tabs -->
-				<div class="flex flex-wrap items-center gap-2">
-					<button
-						@click="activeTab = 'all'"
-						:class="[
-							'px-4 py-2 text-sm font-bold rounded-lg transition-all',
-							activeTab === 'all'
-								? 'bg-[#17345F] text-white shadow-sm'
-								: 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-						]"
-					>
-						All Alumni ({{ allAlumni.length }})
-					</button>
-					<button
-						@click="activeTab = 'featured'"
-						:class="[
-							'px-4 py-2 text-sm font-bold rounded-lg transition-all flex items-center gap-1.5',
-							activeTab === 'featured'
-								? 'bg-[#D5A33D] text-gray-950 shadow-sm'
-								: 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-						]"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-						</svg>
-						Featured Hotshots ({{ featuredCount }})
-					</button>
-				</div>
-
-				<!-- View Mode Toggle (List vs Grid) -->
-				<div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-gray-200 shadow-2xs self-start sm:self-auto">
-					<button
-						type="button"
-						@click="viewMode = 'list'"
-						:class="[
-							'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
-							viewMode === 'list' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
-						]"
-						title="Structured List View"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-						</svg>
-						<span>Directory List</span>
-					</button>
-					<button
-						type="button"
-						@click="viewMode = 'grid'"
-						:class="[
-							'px-3 py-1.5 rounded-md text-xs font-bold flex items-center gap-1.5 transition-all',
-							viewMode === 'grid' ? 'bg-[#17345F] text-white shadow-xs' : 'text-gray-600 hover:text-gray-900'
-						]"
-						title="Grid View"
-					>
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-						</svg>
-						<span>Grid Cards</span>
-					</button>
-				</div>
+			<!-- Category Tabs -->
+			<div class="flex flex-wrap items-center gap-2 mb-6">
+				<button
+					@click="activeTab = 'all'"
+					:class="[
+						'px-4 py-2 text-sm font-bold rounded-lg transition-all',
+						activeTab === 'all'
+							? 'bg-[#17345F] text-white shadow-sm'
+							: 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+					]"
+				>
+					All Alumni ({{ allAlumni.length }})
+				</button>
+				<button
+					@click="activeTab = 'featured'"
+					:class="[
+						'px-4 py-2 text-sm font-bold rounded-lg transition-all flex items-center gap-1.5',
+						activeTab === 'featured'
+							? 'bg-[#D5A33D] text-gray-950 shadow-sm'
+							: 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+					]"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+					</svg>
+					Featured Hotshots ({{ featuredCount }})
+				</button>
 			</div>
 
 			<!-- Filter & Search Controls Bar -->
@@ -216,169 +181,29 @@
 				{{ formatErrorMessage(alumniResource.error, "Unable to load alumni records at this time. Please try again later.") }}
 			</div>
 
-			<!-- Loading State -->
-			<div v-if="alumniResource.loading" class="space-y-3">
-				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-4 border border-gray-200 shadow-2xs animate-pulse flex items-center gap-4">
-					<div class="rounded-full bg-gray-200 h-12 w-12 flex-shrink-0"></div>
-					<div class="flex-1 space-y-2">
-						<div class="h-4 bg-gray-200 rounded w-1/3"></div>
-						<div class="h-3 bg-gray-200 rounded w-1/4"></div>
+			<!-- Loading State Skeleton -->
+			<div v-if="alumniResource.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div v-for="i in 6" :key="i" class="bg-white rounded-xl p-6 border border-gray-200 shadow-2xs animate-pulse space-y-4">
+					<div class="flex items-center space-x-4">
+						<div class="rounded-full bg-gray-200 h-16 w-16"></div>
+						<div class="flex-1 space-y-2">
+							<div class="h-4 bg-gray-200 rounded w-3/4"></div>
+							<div class="h-3 bg-gray-200 rounded w-1/2"></div>
+						</div>
 					</div>
+					<div class="h-3 bg-gray-200 rounded w-full"></div>
+					<div class="h-3 bg-gray-200 rounded w-2/3"></div>
 				</div>
 			</div>
 
-			<!-- Alumni Directory List View (Default - Space Saving & Professional) -->
-			<div v-else-if="filteredAlumniList.length > 0">
-				<!-- List Mode -->
-				<div v-if="viewMode === 'list'" class="bg-white rounded-xl border border-gray-200/90 shadow-sm overflow-hidden">
-					<!-- Desktop Table View (>= lg) -->
-					<div class="hidden lg:block overflow-x-auto">
-						<table class="w-full text-left border-collapse">
-							<thead>
-								<tr class="bg-[#17345F] text-white text-xs font-bold font-exo-2 uppercase tracking-wider">
-									<th scope="col" class="py-3.5 px-6">Alumni Member</th>
-									<th scope="col" class="py-3.5 px-6">Department / Branch</th>
-									<th scope="col" class="py-3.5 px-6">Batch</th>
-									<th scope="col" class="py-3.5 px-6">Contact Details</th>
-									<th scope="col" class="py-3.5 px-6 text-right">Action</th>
-								</tr>
-							</thead>
-							<tbody class="divide-y divide-gray-100 text-sm">
-								<tr
-									v-for="alumni in filteredAlumniList"
-									:key="alumni.name || alumni.email_address"
-									class="hover:bg-blue-50/40 transition-colors group cursor-pointer"
-									@click="selectedAlumni = alumni"
-								>
-									<!-- Member Profile -->
-									<td class="py-4 px-6">
-										<div class="flex items-center gap-3.5">
-											<img
-												v-if="alumni.image && !imageErrors[alumni.name]"
-												:src="alumni.image"
-												:alt="alumni.full_name"
-												class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-2xs flex-shrink-0"
-												@error="imageErrors[alumni.name] = true"
-											/>
-											<div
-												v-else
-												class="w-11 h-11 rounded-full bg-gradient-to-br from-[#17345F] to-[#255294] text-white flex items-center justify-center font-bold text-sm flex-shrink-0"
-											>
-												{{ getInitials(alumni.full_name) }}
-											</div>
-											<div class="min-w-0">
-												<div class="flex items-center gap-2">
-													<span class="font-bold text-gray-900 group-hover:text-[#17345F] font-exo-2 text-base truncate">
-														{{ alumni.full_name }}
-													</span>
-													<span v-if="alumni.featured" class="text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.2 rounded-full">
-														★ Featured
-													</span>
-												</div>
-												<p v-if="alumni.designation || alumni.company_organization" class="text-xs text-gray-500 truncate mt-0.5">
-													{{ alumni.designation }} <span v-if="alumni.designation && alumni.company_organization" class="text-gray-400">at</span> {{ alumni.company_organization }}
-												</p>
-											</div>
-										</div>
-									</td>
-
-									<!-- Department -->
-									<td class="py-4 px-6">
-										<span class="inline-block px-2.5 py-1 bg-slate-100 text-[#17345F] rounded-md text-xs font-semibold border border-slate-200">
-											{{ alumni.branchdepartment }}
-										</span>
-									</td>
-
-									<!-- Batch -->
-									<td class="py-4 px-6">
-										<span class="font-bold text-xs text-[#B8841D]">
-											{{ alumni.batchyear || 'N/A' }}
-										</span>
-									</td>
-
-									<!-- Contact -->
-									<td class="py-4 px-6 text-xs text-gray-600 space-y-0.5">
-										<div class="font-medium text-gray-700 truncate">{{ alumni.email_address }}</div>
-										<div v-if="alumni.phone_number" class="text-gray-500 font-mono text-[11px]">{{ alumni.phone_number }}</div>
-									</td>
-
-									<!-- Action Button -->
-									<td class="py-4 px-6 text-right">
-										<button
-											type="button"
-											class="px-3.5 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider text-[#17345F] hover:bg-[#17345F] hover:text-white border border-gray-200 transition-all shadow-2xs inline-flex items-center gap-1"
-											@click.stop="selectedAlumni = alumni"
-										>
-											<span>View</span>
-											<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-											</svg>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-
-					<!-- Mobile Dense Compact Rows (< lg - Takes minimal vertical height!) -->
-					<div class="lg:hidden divide-y divide-gray-100">
-						<div
-							v-for="alumni in filteredAlumniList"
-							:key="alumni.name || alumni.email_address"
-							@click="selectedAlumni = alumni"
-							class="p-3.5 hover:bg-blue-50/40 active:bg-blue-100/50 transition-colors flex items-center justify-between gap-3 cursor-pointer"
-						>
-							<div class="flex items-center gap-3 min-w-0">
-								<!-- Compact Avatar -->
-								<img
-									v-if="alumni.image && !imageErrors[alumni.name]"
-									:src="alumni.image"
-									:alt="alumni.full_name"
-									class="w-11 h-11 rounded-full object-cover border border-gray-200 flex-shrink-0"
-									@error="imageErrors[alumni.name] = true"
-								/>
-								<div
-									v-else
-									class="w-11 h-11 rounded-full bg-[#17345F] text-white flex items-center justify-center font-bold text-xs flex-shrink-0"
-								>
-									{{ getInitials(alumni.full_name) }}
-								</div>
-
-								<!-- Info -->
-								<div class="min-w-0">
-									<div class="flex items-center gap-1.5 truncate">
-										<h4 class="font-bold font-exo-2 text-sm text-gray-900 truncate">{{ alumni.full_name }}</h4>
-										<span v-if="alumni.featured" class="text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded flex-shrink-0">★</span>
-									</div>
-									<p class="text-xs text-[#17345F] font-semibold truncate mt-0.5">
-										{{ alumni.branchdepartment }}
-									</p>
-									<div class="flex items-center gap-2 text-[11px] text-gray-500 mt-0.5">
-										<span class="font-bold text-[#B8841D]">Batch: {{ alumni.batchyear }}</span>
-										<span v-if="alumni.designation" class="truncate">• {{ alumni.designation }}</span>
-									</div>
-								</div>
-							</div>
-
-							<!-- Arrow Action -->
-							<div class="flex-shrink-0 text-gray-400">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-								</svg>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Grid Mode -->
-				<div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-					<AlumniCard
-						v-for="alumni in filteredAlumniList"
-						:key="alumni.name || alumni.email_address"
-						:alumni="alumni"
-						@select="selectedAlumni = $event"
-					/>
-				</div>
+			<!-- Alumni Cards Grid -->
+			<div v-else-if="filteredAlumniList.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<AlumniCard
+					v-for="alumni in filteredAlumniList"
+					:key="alumni.name || alumni.email_address"
+					:alumni="alumni"
+					@select="selectedAlumni = $event"
+				/>
 			</div>
 
 			<!-- Empty State -->
@@ -449,7 +274,7 @@ import AlumniCard from "../components/AlumniCard.vue"
 import AlumniProfileModal from "../components/AlumniProfileModal.vue"
 import BranchFilterModal from "../components/BranchFilterModal.vue"
 import Footer from "../components/Footer.vue"
-import { DEPARTMENT_BRANCHES, formatErrorMessage, getInitials } from "../utils"
+import { DEPARTMENT_BRANCHES, formatErrorMessage } from "../utils"
 
 const route = useRoute()
 const router = useRouter()
@@ -458,9 +283,7 @@ const searchQuery = ref("")
 const selectedBranch = ref("")
 const selectedAlumni = ref(null)
 const activeTab = ref("all") // "all" or "featured"
-const viewMode = ref("list") // "list" or "grid"
 const isBranchModalOpen = ref(false)
-const imageErrors = ref({})
 
 watch(
 	() => route.query.search,
