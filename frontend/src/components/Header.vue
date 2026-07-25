@@ -56,12 +56,12 @@
 							<p
 								class="text-2xl sm:text-4xl lg:text-[40px] font-exo-2 font-bold tracking-wide text-gray-200"
 							>
-								Dean Alumni &amp;
+								Dean Alumni
 							</p>
 							<h1
 								class="text-sm sm:text-xl lg:text-3xl font-exo-2 tracking-wide mt-0.5 sm:mt-1"
 							>
-								International Affairs
+								&amp; International Affairs
 							</h1>
 						</div>
 					</router-link>

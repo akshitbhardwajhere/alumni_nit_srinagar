@@ -203,13 +203,13 @@
 						>
 						<TextInput
 							v-model="form.enrollment_number"
-							placeholder="e.g. 2023CSE015 or 12345"
+							placeholder="e.g. 2023BCSE015"
 							size="md"
 							variant="outline"
 							required
 							class="mt-1.5"
 						/>
-						<p class="text-[11px] text-gray-500 mt-1">Used by Institute Admin for verification only. Will NOT be displayed on public portal.</p>
+						<p class="text-[11px] text-gray-500 mt-1">Used by Institute Administration for verification only. Will NOT be displayed on public portal.</p>
 					</div>
 
 					<!-- Branch/Department -->
